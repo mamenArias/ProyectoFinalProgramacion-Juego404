@@ -1,6 +1,6 @@
 package clases;
 
-public class PocionDeDefensa extends ElementoJuego {
+public class PocionDefensiva extends ElementoJuego {
 
 	private Byte proteccion; // protección que da la poción
 
