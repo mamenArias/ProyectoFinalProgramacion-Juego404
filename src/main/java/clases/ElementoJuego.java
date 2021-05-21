@@ -1,8 +1,20 @@
 package clases;
 
+import excepciones.NombreVacioException;
+
 public abstract class ElementoJuego {
 
 	private String nombre; // nombre del elemento del juego
+
+
+	/**
+	 * @param nombre
+	 * @throws NombreVacioException 
+	 */
+	public ElementoJuego(String nombre) throws NombreVacioException {
+		super();
+		this.setNombre(nombre);;
+	}
 
 	/**
 	 * Nombre del elemento del juego
@@ -17,8 +29,12 @@ public abstract class ElementoJuego {
 	 * Nuevo nombre para el elemento del juego
 	 * 
 	 * @param nuevo nombre
+	 * @throws NombreVacioException 
 	 */
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre) throws NombreVacioException {
+		if (nombre.isBlank()) {
+			throw new NombreVacioException("Escribe un nombre para tu personaje.");
+		}
 		this.nombre = nombre;
 	}
 }

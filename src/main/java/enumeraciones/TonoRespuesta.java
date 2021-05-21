@@ -1,4 +1,4 @@
-package clases;
+package enumeraciones;
 
 public enum TonoRespuesta {
 

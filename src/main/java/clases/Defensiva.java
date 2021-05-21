@@ -1,8 +1,20 @@
 package clases;
 
-public class PocionDefensiva extends ElementoJuego {
+import enumeraciones.Pociones;
+
+public class Defensiva extends Pocion {
 
 	private Byte proteccion; // protección que da la poción
+	
+
+
+	/**
+	 * @param proteccion
+	 */
+	public Defensiva(Byte proteccion) {
+		super(Pociones.DEFENSIVA);
+		this.proteccion = proteccion;
+	}
 
 	/**
 	 * Protección obtenida al tomar la poción

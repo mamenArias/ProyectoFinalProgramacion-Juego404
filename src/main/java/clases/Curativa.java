@@ -1,8 +1,20 @@
 package clases;
 
-public class PocionCurativa extends ElementoJuego {
+import enumeraciones.Pociones;
+
+public class Curativa extends Pocion {
 
 	private Byte curacion; // nivel de curación de la poción
+
+
+
+	/**
+	 * @param curacion
+	 */
+	public Curativa(Byte curacion) {
+		super(Pociones.CURATIVA);
+		this.curacion = curacion;
+	}
 
 	/**
 	 * Nivel de curación de la poción

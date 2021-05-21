@@ -1,10 +1,8 @@
-package clases;
+package enumeraciones;
 
 public enum Enemigos {
-
-	DEMONIO,
+	USUARIO,
 	PATITO,
 	VIRUS,
 	BUG
-	
 }
