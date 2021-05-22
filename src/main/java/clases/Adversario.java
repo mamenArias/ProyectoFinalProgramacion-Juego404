@@ -36,6 +36,13 @@ public class Adversario extends Personaje{
 		this.respuestaNeutral = respuestaNeutral;
 		this.respuestaAgresiva = respuestaAgresiva;
 	}
+	
+	public Adversario(String nombre, short vida, short ataque, Enemigos tipoEnemigo) throws NombreVacioException {
+		super(nombre);
+		super.setVida(vida);
+		super.setAtaque(ataque);
+		this.tipoEnemigo = tipoEnemigo;
+	}
 	/**
 	 * @return the tipoEnemigo
 	 */
@@ -97,7 +104,10 @@ public class Adversario extends Personaje{
 		this.respuestaAgresiva = respuestaAgresiva;
 	}
 	
-	public void atacar() {
-		
+	public void atacar(Protagonista p) {
+		p.bajarVida(this.getAtaque());
+		if (p.getVida() <= 0) {
+			p.setVida((short)0);
+		}
 	}
 }

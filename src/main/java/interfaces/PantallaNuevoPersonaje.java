@@ -131,15 +131,14 @@ public class PantallaNuevoPersonaje extends JPanel {
 		grupoGenero.add(radioMujer);
 		
 		JButton botonIniciarPartida = new JButton("Iniciar Juego");
-		botonIniciarPartida.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		botonIniciarPartida.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		botonIniciarPartida.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				if(radioHombre.isSelected()||radioMujer.isSelected()) {
 					String nombrePersonaje = campoNombrePersonaje.getText();
 					boolean generoPersonaje = radioHombre.isSelected(); //Hombre es true y Mujer es false
 					short vidaPersonaje = (short) 500;
 					short ataquePersonaje = (short) 50;
-
 					
 					try {
 	
@@ -155,7 +154,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 						smt.close();
 						c.close();
 						
-						ventana.irAPantallaDescripcion();
+						ventana.irAPantallaEscenario1();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -168,6 +167,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 				}
 			}
 		});
+		botonIniciarPartida.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		botonIniciarPartida.setFont(new Font("MS UI Gothic", Font.PLAIN, 24));
 		botonIniciarPartida.setForeground(new Color(255, 255, 255));
 		botonIniciarPartida.setBackground(new Color(153, 0, 0));

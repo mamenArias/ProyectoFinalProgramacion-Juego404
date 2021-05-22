@@ -114,6 +114,7 @@ public class PantallaInicio extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				ventana.irAPantallaEscenario1();
 				//ir a pantalla de búsqueda de personaje
 				//ventana.cargarPartida(ventana.protagonista.getNombre()); esto va en el botón de la nueva pantalla
 				//crear personaje con los datos de la base da datos

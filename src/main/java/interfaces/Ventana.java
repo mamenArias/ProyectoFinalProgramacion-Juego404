@@ -11,6 +11,7 @@ import java.sql.Statement;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import clases.Adversario;
 import clases.Protagonista;
 
 /**
@@ -24,6 +25,7 @@ public class Ventana extends JFrame{
 	private PantallaNuevoPersonaje pantallaNuevoPersonaje; //Pantalla de registro del nuevo personaje
 	private PantallaDescripcionInicial pantallaDescripcion;
 	private PantallaEscenario1 pantallaEscenario1;
+	private PantallaBatalla pantallaBatalla;
 	protected Protagonista protagonista;
 	
 	
@@ -105,10 +107,31 @@ public class Ventana extends JFrame{
 			this.pantallaInicio.setVisible(false);
 		}
 		
+		if(this.pantallaNuevoPersonaje != null) {
+			this.pantallaNuevoPersonaje.setVisible(false);
+		}
+		
+		if(this.pantallaBatalla != null){
+			this.pantallaBatalla.setVisible(false);
+		}
+		
 		this.setContentPane(pantallaEscenario1);
 		this.pantallaEscenario1.setVisible(true);
 	}
 	
+	public void irAPantallaBatalla() {
+		if(this.pantallaBatalla == null) {
+			this.pantallaBatalla = new PantallaBatalla(this);
+		}
+		
+		if(this.pantallaEscenario1 != null) {
+			this.pantallaEscenario1.setVisible(false);
+		}
+		
+		this.setContentPane(pantallaBatalla);
+		this.pantallaBatalla.setVisible(true);
+		
+	}
 	public void guardarPartida() {
 		
 		try {

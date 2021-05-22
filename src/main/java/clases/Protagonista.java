@@ -2,12 +2,17 @@ package clases;
 
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
+import enumeraciones.Enemigos;
 import excepciones.NombreVacioException;
+import interfaces.Ventana;
 
 public class Protagonista extends Personaje {
 
 	private boolean genero;
 	private byte nPantalla;
+	private Ventana ventana;
 
 	/**
 	 * Constructo de la clase Protagonista, donde vamos a establecer su nombre, su
@@ -70,9 +75,20 @@ public class Protagonista extends Personaje {
 	public void huir(Adversario a) {
 		Random r = new Random();
 		if (r.nextInt(100) > 90) {
-			// volver a la pantalla
+			if (a.getTipoEnemigo() == Enemigos.PATITO) {
+				ventana.irAPantallaEscenario1();
+			}
 		} else {
-			a.atacar();
+			JOptionPane.showMessageDialog(ventana, "No puedes escapar", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+			//a.atacar();
+		}
+	}
+	
+	public void atacar(Adversario a) {
+		a.bajarVida(this.getAtaque());
+		if (a.getVida() <= 0) {
+			a.setVida((short)0);
+			JOptionPane.showMessageDialog(ventana, "Has vencido", "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }
