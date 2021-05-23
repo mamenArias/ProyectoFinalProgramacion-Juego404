@@ -154,7 +154,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 						smt.close();
 						c.close();
 						
-						ventana.irAPantallaEscenario1();
+						ventana.irAPantallaDescripcion();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

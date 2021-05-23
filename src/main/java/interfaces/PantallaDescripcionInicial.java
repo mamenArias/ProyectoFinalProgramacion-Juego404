@@ -2,11 +2,18 @@ package interfaces;
 
 import javax.swing.JPanel;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.BorderLayout;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import excepciones.NombreVacioException;
+
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PantallaDescripcionInicial extends JPanel{
 
@@ -18,13 +25,41 @@ public class PantallaDescripcionInicial extends JPanel{
 		this.ventana = v;
 		setLayout(null);
 		
-		JLabel labelDescripcion = new JLabel("<html><body style=\"text-align: center\">jvdsfjdsbjgfhdsjhgbfdg<br>\r\nsamdngfdsg bd<br>\r\nsbfgfdsbg s gfdsgh dfhfdhfds hdsahdah dhdah adh<br>\r\ndsgf dfakjhsbdfhndfs<br>\r\nhd hdshah<br>\r\nah ahhhaldjhbkdajbhfds hDHNHKJDSH DHKDSNHSH <br>\r\nDH D HS DSHLDSJHLKDSJKHJ\u00D1LSH<br></body></html>");
+		JLabel labelDescripcion = new JLabel("<html><body style=\"text-align: center\">Ya son varios d\u00EDas teniendo los mismos sue\u00F1os, sue\u00F1os extra\u00F1os en los que despierto atrapado en otra dimensi\u00F3n. Encerrado en mi propia casa sin saber c\u00F3mo salir y rodeado de criaturas extra\u00F1as.<br>\r\n\u00BFQu\u00E9 est\u00E1 pasando? Quiz\u00E1s paso demasiadas horas trabajando, quiz\u00E1 tanta cafe\u00EDna est\u00E1 empezando a afectarme en mis sue\u00F1os.<br>\r\nEste proyecto me est\u00E1 costando demasiado.. y es que \u00A1arg!<br>\r\nEl cliente no deja de hacer cambios y m\u00E1s cambios, sin escucharnos si quiera. \u00A1Aaaaarg quiero acabar yaaa!<br>\r\nEn fin...</body></html>\r\n");
 		labelDescripcion.setHorizontalAlignment(SwingConstants.CENTER);
-		labelDescripcion.setFont(new Font("MS UI Gothic", Font.PLAIN, 28));
-		labelDescripcion.setForeground(new Color(255, 255, 255));
+		labelDescripcion.setFont(new Font("MS Gothic", Font.BOLD, 28));
+		labelDescripcion.setForeground(new Color(0, 0, 0));
 		labelDescripcion.setBackground(new Color(0, 0, 0));
-		labelDescripcion.setBounds(61, 42, 693, 490);
+		labelDescripcion.setBounds(45, 10, 715, 444);
 		add(labelDescripcion);
+
+		JLabel labelAvanzar = new JLabel(ventana.protagonista.getNombre() + " es hora de despertar... otra vez.");
+		labelAvanzar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				labelAvanzar.setForeground(new Color(255,0,112));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelAvanzar.setForeground(new Color(0,0,0));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.irAPantallaEscenario1();
+			}
+		});
+		labelAvanzar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		labelAvanzar.setForeground(new Color(0, 0, 0));
+		labelAvanzar.setFont(new Font("MS Gothic", Font.BOLD, 28));
+		labelAvanzar.setHorizontalAlignment(SwingConstants.RIGHT);
+		labelAvanzar.setBounds(97, 561, 663, 72);
+		add(labelAvanzar);
+		
+		JLabel labelFondo = new JLabel("");
+		labelFondo.setIcon(new ImageIcon("F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\fondoDescripcion.jpg"));
+		labelFondo.setBounds(0, 0, 808, 703);
+		add(labelFondo);
+		
 		
 	}
 }

@@ -2,6 +2,7 @@ package clases;
 
 import java.util.Random;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import enumeraciones.Enemigos;
@@ -27,6 +28,14 @@ public class Protagonista extends Personaje {
 		super.setVida(vida);
 		super.setAtaque(ataque);
 		this.nPantalla = 1;
+	}
+	
+	public Protagonista(String nombre, boolean genero, short vida, short ataque, byte pantalla) throws NombreVacioException {
+		super(nombre);
+		this.genero = genero;
+		super.setVida(vida);
+		super.setAtaque(ataque);
+		this.nPantalla = pantalla;
 	}
 
 	
@@ -61,8 +70,13 @@ public class Protagonista extends Personaje {
 		this.genero = genero;
 	}
 
-	public void hablar(Adversario a) {
-
+	public void hablar(JButton b) {
+		
+		if(b.equals("botonOpcion1")) {
+			JOptionPane.showMessageDialog(ventana, "Boton 1", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+		} else if (b.equals("botonOpcion2")) {
+			JOptionPane.showMessageDialog(ventana, "Boton2", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 
 	/**

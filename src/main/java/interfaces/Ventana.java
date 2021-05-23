@@ -23,8 +23,10 @@ public class Ventana extends JFrame{
 
 	private PantallaInicio pantallaInicio; // Pantalla Inicial del juego
 	private PantallaNuevoPersonaje pantallaNuevoPersonaje; //Pantalla de registro del nuevo personaje
+	private PantallaCargarPersonaje pantallaCargarPersonaje;
 	private PantallaDescripcionInicial pantallaDescripcion;
 	private PantallaEscenario1 pantallaEscenario1;
+	private PantallaEscenario2 pantallaEscenario2;
 	private PantallaBatalla pantallaBatalla;
 	private PantallaGameOver pantallaGameOver;
 	protected Protagonista protagonista;
@@ -86,6 +88,19 @@ public class Ventana extends JFrame{
 		this.pantallaNuevoPersonaje.setVisible(true);
 	}
 	
+	public void irAPantallaCargaPersonaje() {
+		if (this.pantallaCargarPersonaje == null) {
+			this.pantallaCargarPersonaje = new PantallaCargarPersonaje(this);
+		}
+		
+		if(this.pantallaInicio != null) {
+			this.pantallaInicio.setVisible(false);
+		}
+		
+		this.setContentPane(pantallaCargarPersonaje);
+		this.pantallaCargarPersonaje.setVisible(true);
+	}
+	
 	public void irAPantallaDescripcion() {
 		if(this.pantallaDescripcion == null) {
 			this.pantallaDescripcion = new PantallaDescripcionInicial(this);
@@ -93,6 +108,10 @@ public class Ventana extends JFrame{
 		
 		if(this.pantallaNuevoPersonaje != null) {
 			this.pantallaNuevoPersonaje.setVisible(false);
+		}
+		
+		if(this.pantallaInicio != null) {
+			this.pantallaInicio.setVisible(false);
 		}
 		
 		this.setContentPane(pantallaDescripcion);
@@ -108,8 +127,8 @@ public class Ventana extends JFrame{
 			this.pantallaInicio.setVisible(false);
 		}
 		
-		if(this.pantallaNuevoPersonaje != null) {
-			this.pantallaNuevoPersonaje.setVisible(false);
+		if(this.pantallaDescripcion != null) {
+			this.pantallaDescripcion.setVisible(false);
 		}
 		
 		if(this.pantallaBatalla != null){
@@ -132,6 +151,19 @@ public class Ventana extends JFrame{
 		this.setContentPane(pantallaBatalla);
 		this.pantallaBatalla.setVisible(true);
 		
+	}
+	
+	public void irAPantallaEscenario2() {
+		if(this.pantallaEscenario2 == null) {
+			this.pantallaEscenario2 = new PantallaEscenario2(this);
+		}
+		
+		if(this.pantallaEscenario1 != null) {
+			this.pantallaEscenario1.setVisible(false);
+		}
+		
+		this.setContentPane(pantallaEscenario2);
+		this.pantallaEscenario2.setVisible(true);
 	}
 	
 	public void irAPantallaGameOver() {

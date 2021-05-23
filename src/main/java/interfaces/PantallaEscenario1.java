@@ -83,7 +83,7 @@ public class PantallaEscenario1 extends JPanel {
 				if (llave) {
 					JOptionPane.showConfirmDialog(ventana, "No podrás volver, ¿estás seguro que deseas continuar?",
 							"Aviso", JOptionPane.OK_CANCEL_OPTION);
-					v.irAPantallaBatalla();
+					v.irAPantallaEscenario2();
 					// JOptionPane.showMessageDialog(ventana, "No podrás volver a esta habitación,
 					// ¿estás seguro que deseas salir?", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 				} else {
