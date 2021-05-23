@@ -56,11 +56,4 @@ public class Personaje extends ElementoJuego {
 		this.vida = (short)(vida - ataque);
 	}
 	
-	/**
-	 * Función para los ataques realizados por los personajes
-	 */
-	public void atacar() {
-		
-	}
-
 }

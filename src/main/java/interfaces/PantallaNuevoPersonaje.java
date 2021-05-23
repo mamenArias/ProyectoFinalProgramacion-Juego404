@@ -72,7 +72,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		
 		campoNombrePersonaje = new JTextField();
 		campoNombrePersonaje.setFont(new Font("MS UI Gothic", Font.PLAIN, 22));
-		campoNombrePersonaje.setForeground(new Color(255, 0, 0));
+		campoNombrePersonaje.setForeground(new Color(255, 0, 112));
 		campoNombrePersonaje.setHorizontalAlignment(SwingConstants.CENTER);
 		campoNombrePersonaje.setBackground(new Color(0, 0, 0));
 		campoNombrePersonaje.setBounds(264, 81, 268, 34);
@@ -93,7 +93,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		radioHombre.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				radioHombre.setForeground(new Color(255,0,0));
+				radioHombre.setForeground(new Color(255,0,112));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -112,7 +112,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		radioMujer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				radioMujer.setForeground(new Color(255,0,0));
+				radioMujer.setForeground(new Color(255,0,112));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -170,7 +170,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		botonIniciarPartida.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		botonIniciarPartida.setFont(new Font("MS UI Gothic", Font.PLAIN, 24));
 		botonIniciarPartida.setForeground(new Color(255, 255, 255));
-		botonIniciarPartida.setBackground(new Color(153, 0, 0));
+		botonIniciarPartida.setBackground(new Color(255, 0, 112));
 		botonIniciarPartida.setBounds(302, 341, 185, 34);
 		botonIniciarPartida.setBorderPainted(false);
 		botonIniciarPartida.setFocusable(false);
@@ -193,7 +193,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonVolver.setForeground(new Color(255,0,0));
+				botonVolver.setForeground(new Color(255,0,112));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {

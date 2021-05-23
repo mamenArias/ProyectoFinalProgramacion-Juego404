@@ -35,7 +35,7 @@ public class PantallaBatalla extends JPanel {
 	public PantallaBatalla(Ventana v) {
 		
 		try {
-			enemigo = new Adversario("Donaldo", (short)200, (short)10, Enemigos.PATITO);
+			enemigo = new Adversario("Donaldo", (short)200, (short)1000, Enemigos.PATITO);
 		} catch (NombreVacioException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -90,7 +90,7 @@ public class PantallaBatalla extends JPanel {
 		botonAtacar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonAtacar.setForeground(new Color(255, 0, 0));
+				botonAtacar.setForeground(new Color(255, 0, 112));
 			}
 
 			@Override
@@ -100,6 +100,7 @@ public class PantallaBatalla extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.protagonista.atacar(enemigo);
+				JOptionPane.showMessageDialog(ventana, "¿Cómo te atreves a pegarle al pobre Patito?");
 				textoBatalla.setText("  \u00A1Has atacado al Patito!\r\n  Ahora su vida es de: " + enemigo.getVida());
 				if(enemigo.getVida() == 0) {
 					v.irAPantallaEscenario1();
@@ -107,7 +108,7 @@ public class PantallaBatalla extends JPanel {
 				enemigo.atacar(v.protagonista);
 				labelVidaProta.setText("Vida: " + v.protagonista.getVida());
 				if(v.protagonista.getVida() == 0) {
-					JOptionPane.showMessageDialog(v, "Has perdido", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+					v.irAPantallaGameOver();
 				}
 			}
 		});
@@ -124,7 +125,7 @@ public class PantallaBatalla extends JPanel {
 		botonHablar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonHablar.setForeground(new Color(255, 0, 0));
+				botonHablar.setForeground(new Color(255, 0, 112));
 			}
 
 			@Override
@@ -145,7 +146,7 @@ public class PantallaBatalla extends JPanel {
 		botonHuir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonHuir.setForeground(new Color(255, 0, 0));
+				botonHuir.setForeground(new Color(255, 0, 112));
 			}
 
 			@Override
@@ -154,7 +155,7 @@ public class PantallaBatalla extends JPanel {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//protagonista.huir(enemigo);
+				//v.protagonista.huir(enemigo);
 				Random r = new Random();
 				if (r.nextInt(100) > 80) {
 					if (enemigo.getTipoEnemigo() == Enemigos.PATITO) {
@@ -163,7 +164,11 @@ public class PantallaBatalla extends JPanel {
 				} else {
 					textoBatalla.setText("No has podido huir.");
 					//JOptionPane.showMessageDialog(v, "No puedes escapar", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-					//a.atacar();
+					enemigo.atacar(v.protagonista);
+					labelVidaProta.setText("Vida: " + v.protagonista.getVida());
+					if(v.protagonista.getVida() == 0) {
+						v.irAPantallaGameOver();
+					}
 				}
 			}
 		});

@@ -26,6 +26,7 @@ public class Ventana extends JFrame{
 	private PantallaDescripcionInicial pantallaDescripcion;
 	private PantallaEscenario1 pantallaEscenario1;
 	private PantallaBatalla pantallaBatalla;
+	private PantallaGameOver pantallaGameOver;
 	protected Protagonista protagonista;
 	
 	
@@ -131,6 +132,23 @@ public class Ventana extends JFrame{
 		this.setContentPane(pantallaBatalla);
 		this.pantallaBatalla.setVisible(true);
 		
+	}
+	
+	public void irAPantallaGameOver() {
+		if(this.pantallaGameOver == null) {
+			this.pantallaGameOver = new PantallaGameOver(this);
+		}
+		
+		/*if(this.pantallaBatalla != null) {
+			this.pantallaBatalla.setVisible(false);
+		}*/
+		
+		if(this.pantallaInicio != null) {
+			this.pantallaInicio.setVisible(false);
+		}
+		
+		this.setContentPane(pantallaGameOver);
+		this.pantallaGameOver.setVisible(true);
 	}
 	public void guardarPartida() {
 		

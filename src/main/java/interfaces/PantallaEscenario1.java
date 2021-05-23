@@ -16,29 +16,29 @@ import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
-public class PantallaEscenario1 extends JPanel{
+public class PantallaEscenario1 extends JPanel {
 
 	private Ventana ventana;
 	private boolean llave;
-	
-	public PantallaEscenario1 (Ventana v) {
+
+	public PantallaEscenario1(Ventana v) {
 		this.ventana = v;
 		llave = false;
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelCentral = new JPanel();
-		
+
 		add(panelCentral, BorderLayout.CENTER);
 		panelCentral.setLayout(null);
-		
+
 		JTextPane textoJuego = new JTextPane();
 		textoJuego.setLocation(0, 600);
 		panelCentral.add(textoJuego);
 		textoJuego.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
 		textoJuego.setForeground(new Color(255, 255, 255));
 		textoJuego.setBackground(new Color(0, 0, 0));
-		textoJuego.setSize(802,120);
-		
+		textoJuego.setSize(802, 120);
+
 		JLabel labelSilla = new JLabel("");
 		labelSilla.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelSilla.setBackground(new Color(153, 255, 0));
@@ -48,11 +48,11 @@ public class PantallaEscenario1 extends JPanel{
 				textoJuego.setText("No es momento de ponerse a trabajar, busca la forma de salir de aquí.");
 			}
 		});
-		//labelSIlla.setOpaque(false);
+		// labelSIlla.setOpaque(false);
 		labelSilla.setBounds(150, 225, 80, 100);
-		labelSilla.setSize(80,150);
+		labelSilla.setSize(80, 150);
 		panelCentral.add(labelSilla);
-		
+
 		JLabel labelEnemigo = new JLabel("");
 		labelEnemigo.addMouseListener(new MouseAdapter() {
 			@Override
@@ -63,7 +63,7 @@ public class PantallaEscenario1 extends JPanel{
 		labelEnemigo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelEnemigo.setBounds(100, 350, 45, 45);
 		panelCentral.add(labelEnemigo);
-		
+
 		JLabel labelLlave = new JLabel("");
 		labelLlave.addMouseListener(new MouseAdapter() {
 			@Override
@@ -75,14 +75,18 @@ public class PantallaEscenario1 extends JPanel{
 		labelLlave.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelLlave.setBounds(490, 210, 45, 40);
 		panelCentral.add(labelLlave);
-		
+
 		JLabel labelPuerta = new JLabel("");
 		labelPuerta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(llave) {
-					JOptionPane.showMessageDialog(ventana, "No podrás volver a esta habitación, ¿estás seguro que deseas salir?", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-				}else {
+				if (llave) {
+					JOptionPane.showConfirmDialog(ventana, "No podrás volver, ¿estás seguro que deseas continuar?",
+							"Aviso", JOptionPane.OK_CANCEL_OPTION);
+					v.irAPantallaBatalla();
+					// JOptionPane.showMessageDialog(ventana, "No podrás volver a esta habitación,
+					// ¿estás seguro que deseas salir?", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+				} else {
 					textoJuego.setText("Puerta Cerrada");
 				}
 			}
@@ -90,28 +94,15 @@ public class PantallaEscenario1 extends JPanel{
 		labelPuerta.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelPuerta.setBounds(679, 225, 111, 309);
 		panelCentral.add(labelPuerta);
-		
+
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setBackground(new Color(0, 0, 0));
-		labelFondo.setIcon(new ImageIcon("F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\habitacion2.jpg"));
+		labelFondo.setIcon(new ImageIcon(
+				"F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\habitacion2.jpg"));
 		labelFondo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelFondo.setBounds(0, 0, 800, 600);
-		//labelFondo.setSize(800, 600);
+		// labelFondo.setSize(800, 600);
 		panelCentral.add(labelFondo);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 }

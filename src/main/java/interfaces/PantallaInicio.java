@@ -37,7 +37,7 @@ public class PantallaInicio extends JPanel {
 		
 		JLabel labelLogoJuego = new JLabel("");
 		labelLogoJuego.setHorizontalAlignment(SwingConstants.CENTER);
-		labelLogoJuego.setIcon(new ImageIcon("imagenes//titulo.png"));
+		labelLogoJuego.setIcon(new ImageIcon("imagenes//404.jpg"));
 		Border border = labelLogoJuego.getBorder();
 		Border margin = new EmptyBorder(60,0,0,0);
 		labelLogoJuego.setBorder(new CompoundBorder(border, margin));
@@ -55,7 +55,7 @@ public class PantallaInicio extends JPanel {
 		botonNuevoPersonaje.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonNuevoPersonaje.setForeground(new Color(255,0,0));
+				botonNuevoPersonaje.setForeground(new Color(255,0,112));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -80,7 +80,7 @@ public class PantallaInicio extends JPanel {
 		botonSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonSalir.setForeground(new Color(255,0,0));
+				botonSalir.setForeground(new Color(255,0,112));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -88,7 +88,8 @@ public class PantallaInicio extends JPanel {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {	
-				System.exit(0);
+				v.irAPantallaGameOver();
+				//System.exit(0);
 			}
 		});
 		botonSalir.setFont(new Font("MS UI Gothic", Font.PLAIN, 26));
@@ -105,7 +106,7 @@ public class PantallaInicio extends JPanel {
 		botonCargarPersonaje.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonCargarPersonaje.setForeground(new Color(255,0,0));
+				botonCargarPersonaje.setForeground(new Color(255,0,112));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
