@@ -88,8 +88,8 @@ public class PantallaInicio extends JPanel {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {	
-				v.irAPantallaGameOver();
-				//System.exit(0);
+				//v.irAPantallaGameOver();
+				System.exit(0);
 			}
 		});
 		botonSalir.setFont(new Font("MS UI Gothic", Font.PLAIN, 26));

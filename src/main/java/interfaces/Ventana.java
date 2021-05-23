@@ -70,6 +70,10 @@ public class Ventana extends JFrame{
 			this.pantallaNuevoPersonaje.setVisible(false);
 		}
 		
+		if(this.pantallaCargarPersonaje != null) {
+			this.pantallaCargarPersonaje.setVisible(false);
+		}
+		
 		this.setContentPane(pantallaInicio);
 		this.pantallaInicio.setVisible(true);
 	}

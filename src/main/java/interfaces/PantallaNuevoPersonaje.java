@@ -166,12 +166,22 @@ public class PantallaNuevoPersonaje extends JPanel {
 					JOptionPane.showMessageDialog(ventana, "No has seleccionado ningún género", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botonIniciarPartida.setForeground(new Color(0,0,0));
+				botonIniciarPartida.setBackground(new Color(255,102,255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botonIniciarPartida.setForeground(new Color(255, 255, 255));
+				botonIniciarPartida.setBackground(new Color(255, 0, 112));
+			}
 		});
 		botonIniciarPartida.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		botonIniciarPartida.setFont(new Font("MS UI Gothic", Font.PLAIN, 24));
+		botonIniciarPartida.setFont(new Font("MS UI Gothic", Font.BOLD, 24));
 		botonIniciarPartida.setForeground(new Color(255, 255, 255));
 		botonIniciarPartida.setBackground(new Color(255, 0, 112));
-		botonIniciarPartida.setBounds(302, 341, 185, 34);
+		botonIniciarPartida.setBounds(291, 332, 205, 48);
 		botonIniciarPartida.setBorderPainted(false);
 		botonIniciarPartida.setFocusable(false);
 		panelCentral.add(botonIniciarPartida);

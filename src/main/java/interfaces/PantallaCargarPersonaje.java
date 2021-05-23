@@ -18,6 +18,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
 
 public class PantallaCargarPersonaje extends JPanel{
 
@@ -25,20 +28,33 @@ public class PantallaCargarPersonaje extends JPanel{
 	private JTextField campoNombrePersonaje;
 	
 	public PantallaCargarPersonaje(Ventana v) {
+		setBackground(new Color(0, 0, 0));
 		this.ventana = v;
 		setLayout(null);
 		
 		JLabel labelNombre = new JLabel("Introduce el nombre de tu personaje:");
+		labelNombre.setFont(new Font("MS UI Gothic", Font.PLAIN, 24));
+		labelNombre.setBackground(new Color(0, 0, 0));
+		labelNombre.setForeground(new Color(255, 255, 255));
 		labelNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		labelNombre.setBounds(193, 105, 341, 77);
+		labelNombre.setBounds(199, 211, 382, 77);
 		add(labelNombre);
 		
 		campoNombrePersonaje = new JTextField();
-		campoNombrePersonaje.setBounds(260, 192, 239, 46);
+		campoNombrePersonaje.setFont(new Font("MS UI Gothic", Font.PLAIN, 22));
+		campoNombrePersonaje.setHorizontalAlignment(SwingConstants.CENTER);
+		campoNombrePersonaje.setForeground(new Color(255, 0, 102));
+		campoNombrePersonaje.setBackground(new Color(0, 0, 0));
+		campoNombrePersonaje.setBounds(199, 298, 382, 46);
 		add(campoNombrePersonaje);
 		campoNombrePersonaje.setColumns(10);
 		
 		JButton botonBuscar = new JButton("Buscar");
+		botonBuscar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		botonBuscar.setForeground(new Color(255, 255, 255));
+		botonBuscar.setFont(new Font("MS UI Gothic", Font.BOLD, 24));
+		botonBuscar.setBorderPainted(false);
+		botonBuscar.setBackground(new Color(255, 0, 102));
 		botonBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -88,9 +104,44 @@ public class PantallaCargarPersonaje extends JPanel{
 				}
 				
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botonBuscar.setForeground(new Color(0,0,0));
+				botonBuscar.setBackground(new Color(255,102,255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botonBuscar.setForeground(new Color(255, 255, 255));
+				botonBuscar.setBackground(new Color(255, 0, 112));
+			}
 		});
-		botonBuscar.setBounds(329, 298, 85, 21);
+		botonBuscar.setBounds(321, 389, 140, 46);
 		add(botonBuscar);
+		
+		JButton botonVolver = new JButton("Volver");
+		botonVolver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.volverAInicio();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botonVolver.setForeground(new Color(255,0,112));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botonVolver.setForeground(new Color(255,255,255));
+			}
+		});
+		botonVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		botonVolver.setFocusable(false);
+		botonVolver.setContentAreaFilled(false);
+		botonVolver.setBorderPainted(false);
+		botonVolver.setFont(new Font("MS UI Gothic", Font.PLAIN, 22));
+		botonVolver.setForeground(new Color(255, 255, 255));
+		botonVolver.setBackground(new Color(0, 0, 0));
+		botonVolver.setBounds(660, 610, 132, 46);
+		add(botonVolver);
 		
 		
 		
