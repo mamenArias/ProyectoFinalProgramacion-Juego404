@@ -101,7 +101,7 @@ public class Protagonista extends Personaje {
 	}
 	
 	public void atacar(Adversario a) {
-		a.bajarVida(this.getAtaque());
+		a.bajarVida((short)new Random().nextInt(this.getAtaque()));
 		if (a.getVida() <= 0) {
 			a.setVida((short)0);
 			JOptionPane.showMessageDialog(ventana, "Has vencido", "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);

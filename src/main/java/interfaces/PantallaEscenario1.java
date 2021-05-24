@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -16,10 +17,16 @@ import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
+import clases.Adversario;
+import enumeraciones.Enemigos;
+import excepciones.NombreConNumerosException;
+import excepciones.NombreVacioException;
+
 public class PantallaEscenario1 extends JPanel {
 
 	private Ventana ventana;
 	private boolean llave;
+	private Adversario enemigo;
 
 	public PantallaEscenario1(Ventana v) {
 		this.ventana = v;
@@ -57,6 +64,15 @@ public class PantallaEscenario1 extends JPanel {
 		labelEnemigo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
+					v.enemigo = new Adversario("Donaldo", (short)200, (short)100, Enemigos.PATITO);
+				} catch (NombreVacioException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NombreConNumerosException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				ventana.irAPantallaBatalla();
 			}
 		});
@@ -95,6 +111,26 @@ public class PantallaEscenario1 extends JPanel {
 		labelPuerta.setBounds(679, 225, 111, 309);
 		panelCentral.add(labelPuerta);
 
+		JLabel labelEnemigo2 = new JLabel("");
+		labelEnemigo2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					v.enemigo = new Adversario("DSADFS", (short)300, (short)100, Enemigos.VIRUS);
+				} catch (NombreVacioException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NombreConNumerosException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				ventana.irAPantallaBatalla();
+			}
+		});
+		labelEnemigo2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		labelEnemigo2.setBounds(231, 178, 118, 106);
+		panelCentral.add(labelEnemigo2);
+		
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setBackground(new Color(0, 0, 0));
 		labelFondo.setIcon(new ImageIcon(
@@ -103,6 +139,8 @@ public class PantallaEscenario1 extends JPanel {
 		labelFondo.setBounds(0, 0, 800, 600);
 		// labelFondo.setSize(800, 600);
 		panelCentral.add(labelFondo);
+		
+		
 
 	}
 }

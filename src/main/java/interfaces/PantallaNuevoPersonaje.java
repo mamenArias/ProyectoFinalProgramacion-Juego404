@@ -143,7 +143,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 					String nombrePersonaje = campoNombrePersonaje.getText();
 					boolean generoPersonaje = radioHombre.isSelected(); // Hombre es true y Mujer es false
 					short vidaPersonaje = (short) 500;
-					short ataquePersonaje = (short) 50;
+					short ataquePersonaje = (short) 100;
 
 					try {
 

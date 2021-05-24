@@ -18,25 +18,27 @@ import java.awt.event.MouseEvent;
 public class OpcionesHablar extends JPanel{
 	public OpcionesHablar(String opcion1 , String opcion2, String opcion3, Adversario enemigo) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE, 0.0, 0.0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 	
 		
 		JLabel labelInformacion = new JLabel("Probando");
+		labelInformacion.setHorizontalAlignment(SwingConstants.CENTER);
 		labelInformacion.setVisible(false);
 		labelInformacion.setFont(new Font("MS UI Gothic", Font.PLAIN, 20));
 		labelInformacion.setForeground(Color.WHITE);
 		labelInformacion.setBackground(Color.BLACK);
 		GridBagConstraints gbc_labelInformacion = new GridBagConstraints();
 		gbc_labelInformacion.insets = new Insets(0, 0, 5, 5);
-		gbc_labelInformacion.gridx = 40;
+		gbc_labelInformacion.gridx = 37;
 		gbc_labelInformacion.gridy = 1;
 		add(labelInformacion, gbc_labelInformacion);
 		
 		JLabel labelOpcion1 = new JLabel(opcion1);
+		labelOpcion1.setHorizontalAlignment(SwingConstants.CENTER);
 		labelOpcion1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -53,6 +55,7 @@ public class OpcionesHablar extends JPanel{
 		add(labelOpcion1, gbc_labelOpcion1);
 		
 		JLabel labelOpcion2 = new JLabel(opcion2);
+		labelOpcion2.setHorizontalAlignment(SwingConstants.CENTER);
 		labelOpcion2.setFont(new Font("MS UI Gothic", Font.PLAIN, 20));
 		labelOpcion2.setBackground(Color.BLACK);
 		labelOpcion2.setForeground(Color.WHITE);
@@ -63,6 +66,7 @@ public class OpcionesHablar extends JPanel{
 		add(labelOpcion2, gbc_labelOpcion2);
 		
 		JLabel labelOpcion3 = new JLabel(opcion3);
+		labelOpcion3.setHorizontalAlignment(SwingConstants.CENTER);
 		labelOpcion3.setFont(new Font("MS UI Gothic", Font.PLAIN, 20));
 		labelOpcion3.setBackground(Color.BLACK);
 		labelOpcion3.setForeground(Color.WHITE);

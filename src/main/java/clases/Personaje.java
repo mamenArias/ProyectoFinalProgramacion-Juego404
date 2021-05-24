@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.Random;
+
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
