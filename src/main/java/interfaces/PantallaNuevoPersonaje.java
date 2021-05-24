@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import clases.Personaje;
 import clases.Protagonista;
+import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
 import java.awt.GridBagLayout;
@@ -159,6 +160,9 @@ public class PantallaNuevoPersonaje extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (NombreVacioException e1) {
+						JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+						campoNombrePersonaje.setBackground(new Color(255, 220, 220));
+					} catch (NombreConNumerosException e1) {
 						JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 						campoNombrePersonaje.setBackground(new Color(255, 220, 220));
 					}

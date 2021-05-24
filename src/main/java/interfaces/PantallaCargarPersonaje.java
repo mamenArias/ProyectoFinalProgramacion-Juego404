@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import clases.Protagonista;
+import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
 import javax.swing.JTextField;
@@ -88,6 +89,9 @@ public class PantallaCargarPersonaje extends JPanel{
 								v.irAPantallaEscenario2();
 							}
 						} catch (NombreVacioException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (NombreConNumerosException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}

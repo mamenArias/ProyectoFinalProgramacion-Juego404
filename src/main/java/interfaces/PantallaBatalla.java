@@ -16,6 +16,7 @@ import clases.Adversario;
 import clases.Personaje;
 import clases.Protagonista;
 import enumeraciones.Enemigos;
+import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
 import java.awt.Font;
@@ -35,8 +36,11 @@ public class PantallaBatalla extends JPanel {
 	public PantallaBatalla(Ventana v) {
 		
 		try {
-			enemigo = new Adversario("Donaldo", (short)200, (short)1000, Enemigos.PATITO);
+			enemigo = new Adversario("Donaldo", (short)200, (short)10, Enemigos.PATITO);
 		} catch (NombreVacioException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NombreConNumerosException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -100,8 +104,9 @@ public class PantallaBatalla extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.protagonista.atacar(enemigo);
-				JOptionPane.showMessageDialog(ventana, "¿Cómo te atreves a pegarle al pobre Patito?");
-				textoBatalla.setText("  \u00A1Has atacado al Patito!\r\n  Ahora su vida es de: " + enemigo.getVida());
+				//JOptionPane.showMessageDialog(ventana, "¿Cómo te atreves a pegarle al pobre Patito?");
+				textoBatalla.setText("  \u00A1Has atacado al Patito!\r\n  Ahora su vida es de: " + enemigo.getVida()
+				+ "  El patito te ha atacado, te ha hecho " + enemigo.getAtaque() + " de daño.");
 				if(enemigo.getVida() == 0) {
 					v.irAPantallaEscenario1();
 				}

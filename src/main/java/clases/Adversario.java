@@ -2,6 +2,7 @@ package clases;
 
 import enumeraciones.Enemigos;
 import enumeraciones.TonoRespuesta;
+import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
 public class Adversario extends Personaje{
@@ -24,9 +25,10 @@ public class Adversario extends Personaje{
 	 * @param respuestaNeutral respuesta cuando elegimos la opción neutra
 	 * @param respuestaAgresiva respuesta cuando elegimos la opción incorrecta
 	 * @throws NombreVacioException 
+	 * @throws NombreConNumerosException 
 	 */
 	public Adversario(String nombre, Short vida, Short ataque, Enemigos tipoEnemigo, TonoRespuesta respuesta,
-			String respuestaAmistosa, String respuestaNeutral, String respuestaAgresiva) throws NombreVacioException {
+			String respuestaAmistosa, String respuestaNeutral, String respuestaAgresiva) throws NombreVacioException, NombreConNumerosException {
 		super(nombre);
 		super.setVida(vida);
 		super.setAtaque(ataque);
@@ -37,7 +39,7 @@ public class Adversario extends Personaje{
 		this.respuestaAgresiva = respuestaAgresiva;
 	}
 	
-	public Adversario(String nombre, short vida, short ataque, Enemigos tipoEnemigo) throws NombreVacioException {
+	public Adversario(String nombre, short vida, short ataque, Enemigos tipoEnemigo) throws NombreVacioException, NombreConNumerosException {
 		super(nombre);
 		super.setVida(vida);
 		super.setAtaque(ataque);

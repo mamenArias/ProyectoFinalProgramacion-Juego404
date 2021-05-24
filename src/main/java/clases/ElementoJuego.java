@@ -1,5 +1,6 @@
 package clases;
 
+import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
 public abstract class ElementoJuego {
@@ -10,8 +11,9 @@ public abstract class ElementoJuego {
 	/**
 	 * @param nombre
 	 * @throws NombreVacioException 
+	 * @throws NombreConNumerosException 
 	 */
-	public ElementoJuego(String nombre) throws NombreVacioException {
+	public ElementoJuego(String nombre) throws NombreVacioException, NombreConNumerosException {
 		super();
 		this.setNombre(nombre);;
 	}
@@ -30,10 +32,15 @@ public abstract class ElementoJuego {
 	 * 
 	 * @param nuevo nombre
 	 * @throws NombreVacioException 
+	 * @throws NombreConNumerosException 
 	 */
-	public void setNombre(String nombre) throws NombreVacioException {
+	public void setNombre(String nombre) throws NombreVacioException, NombreConNumerosException {
 		if (nombre.isBlank()) {
 			throw new NombreVacioException("Escribe un nombre para tu personaje.");
+		}
+		if (nombre.contains("0")||nombre.contains("1")||nombre.contains("2")||nombre.contains("3")||nombre.contains("4")||
+				nombre.contains("5")||nombre.contains("6")||nombre.contains("7")||nombre.contains("8")||nombre.contains("9")) {
+			throw new NombreConNumerosException("El nombre no puede contener números.");
 		}
 		this.nombre = nombre;
 	}

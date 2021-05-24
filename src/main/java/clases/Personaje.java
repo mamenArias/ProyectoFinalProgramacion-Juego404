@@ -1,5 +1,6 @@
 package clases;
 
+import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
 public class Personaje extends ElementoJuego {
@@ -13,8 +14,9 @@ public class Personaje extends ElementoJuego {
 	 * @param vida
 	 * @param ataque
 	 * @throws NombreVacioException 
+	 * @throws NombreConNumerosException 
 	 */
-	public Personaje(String nombre) throws NombreVacioException {
+	public Personaje(String nombre) throws NombreVacioException, NombreConNumerosException {
 		super(nombre);
 		this.vida = 0;
 		this.ataque = 0;

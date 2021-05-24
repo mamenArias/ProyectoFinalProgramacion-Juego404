@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import enumeraciones.Enemigos;
+import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 import interfaces.Ventana;
 
@@ -21,8 +22,9 @@ public class Protagonista extends Personaje {
 	 * 
 	 * @param nombre nombre del personaje
 	 * @throws NombreVacioException
+	 * @throws NombreConNumerosException 
 	 */
-	public Protagonista(String nombre, boolean genero, short vida, short ataque) throws NombreVacioException {
+	public Protagonista(String nombre, boolean genero, short vida, short ataque) throws NombreVacioException, NombreConNumerosException {
 		super(nombre);
 		this.genero = genero;
 		super.setVida(vida);
@@ -30,7 +32,7 @@ public class Protagonista extends Personaje {
 		this.nPantalla = 1;
 	}
 	
-	public Protagonista(String nombre, boolean genero, short vida, short ataque, byte pantalla) throws NombreVacioException {
+	public Protagonista(String nombre, boolean genero, short vida, short ataque, byte pantalla) throws NombreVacioException, NombreConNumerosException {
 		super(nombre);
 		this.genero = genero;
 		super.setVida(vida);

@@ -23,7 +23,7 @@ public class PantallaEscenario2 extends JPanel {
 			
 			Statement smt = c.createStatement();
 			
-			smt.executeUpdate("update protagonista set pantalla=2 where nombre='" + ventana.protagonista.getNombre() + "';");
+			smt.executeUpdate("update protagonista set pantalla=2, vida="+ventana.protagonista.getVida()+" where nombre='" + ventana.protagonista.getNombre() + "';");
 			
 			smt.close();
 			c.close();
