@@ -126,6 +126,7 @@ public class PantallaCargarPersonaje extends JPanel{
 		botonVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				campoNombrePersonaje.setText("");
 				ventana.volverAInicio();
 			}
 			@Override

@@ -81,6 +81,16 @@ public class PantallaBatalla extends JPanel {
 		labelVidaProta.setBounds(605, 81, 171, 43);
 		add(labelVidaProta);
 		
+		OpcionesHablar menuConversacion = new OpcionesHablar("Hola", "Adios", "Patata", enemigo);
+		menuConversacion.setSize(747, 300);
+		menuConversacion.setLocation(29, 292);
+		menuConversacion.setVisible(false);
+		menuConversacion.setFont(new Font("MS UI Gothic", Font.PLAIN, 20));
+		menuConversacion.setForeground(new Color(255, 255, 255));
+		menuConversacion.setBackground(new Color(0, 0, 0));
+		add(menuConversacion);
+		
+		
 		JPanel panelMenuBatalla = new JPanel();
 		panelMenuBatalla.setAlignmentY(CENTER_ALIGNMENT);
 		panelMenuBatalla.setBounds(0, 602, 799, 100);
@@ -136,6 +146,11 @@ public class PantallaBatalla extends JPanel {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				botonHablar.setForeground(new Color(255, 255, 255));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textoBatalla.setVisible(false);
+				menuConversacion.setVisible(true);
 			}
 		});
 		botonHablar.setFont(new Font("MS UI Gothic", Font.PLAIN, 20));

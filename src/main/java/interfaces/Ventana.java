@@ -30,6 +30,7 @@ public class Ventana extends JFrame{
 	private PantallaBatalla pantallaBatalla;
 	private PantallaGameOver pantallaGameOver;
 	protected Protagonista protagonista;
+	protected Adversario enemigo;
 	
 	
 	/**
@@ -130,6 +131,9 @@ public class Ventana extends JFrame{
 		if(this.pantallaInicio != null) {
 			this.pantallaInicio.setVisible(false);
 		}
+		if(this.pantallaCargarPersonaje != null) {
+			this.pantallaCargarPersonaje.setVisible(false);
+		}
 		
 		if(this.pantallaDescripcion != null) {
 			this.pantallaDescripcion.setVisible(false);
@@ -160,6 +164,10 @@ public class Ventana extends JFrame{
 	public void irAPantallaEscenario2() {
 		if(this.pantallaEscenario2 == null) {
 			this.pantallaEscenario2 = new PantallaEscenario2(this);
+		}
+
+		if(this.pantallaCargarPersonaje != null) {
+			this.pantallaCargarPersonaje.setVisible(false);
 		}
 		
 		if(this.pantallaEscenario1 != null) {

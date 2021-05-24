@@ -29,7 +29,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 
 import javax.swing.JButton;
@@ -41,28 +43,28 @@ public class PantallaNuevoPersonaje extends JPanel {
 	private Ventana ventana;
 	private JTextField campoNombrePersonaje;
 
-	public PantallaNuevoPersonaje (Ventana v) {
+	public PantallaNuevoPersonaje(Ventana v) {
 		setForeground(new Color(255, 255, 255));
 		setBackground(new Color(0, 0, 0));
 		this.ventana = v;
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel tituloNuevoPersonaje = new JLabel("Introduce los datos de tu personaje");
 		tituloNuevoPersonaje.setHorizontalAlignment(SwingConstants.CENTER);
 		tituloNuevoPersonaje.setFont(new Font("MS UI Gothic", Font.PLAIN, 24));
 		tituloNuevoPersonaje.setForeground(new Color(255, 255, 255));
 		tituloNuevoPersonaje.setBackground(new Color(0, 0, 0));
 		Border border = tituloNuevoPersonaje.getBorder();
-		Border margin = new EmptyBorder(60,0,60,0);
+		Border margin = new EmptyBorder(60, 0, 60, 0);
 		tituloNuevoPersonaje.setBorder(new CompoundBorder(border, margin));
 		add(tituloNuevoPersonaje, BorderLayout.NORTH);
-		
+
 		JPanel panelCentral = new JPanel();
 		panelCentral.setForeground(new Color(255, 255, 255));
 		panelCentral.setBackground(new Color(0, 0, 0));
 		add(panelCentral, BorderLayout.CENTER);
 		panelCentral.setLayout(null);
-		
+
 		JLabel labelNombre = new JLabel("Nombre:");
 		labelNombre.setFont(new Font("MS UI Gothic", Font.PLAIN, 24));
 		labelNombre.setBounds(325, 10, 132, 61);
@@ -70,7 +72,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		labelNombre.setForeground(new Color(255, 255, 255));
 		labelNombre.setBackground(new Color(0, 0, 0));
 		panelCentral.add(labelNombre);
-		
+
 		campoNombrePersonaje = new JTextField();
 		campoNombrePersonaje.setFont(new Font("MS UI Gothic", Font.PLAIN, 22));
 		campoNombrePersonaje.setForeground(new Color(255, 0, 112));
@@ -79,7 +81,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		campoNombrePersonaje.setBounds(264, 81, 268, 34);
 		panelCentral.add(campoNombrePersonaje);
 		campoNombrePersonaje.setColumns(10);
-		
+
 		JLabel labelGenero = new JLabel("G\u00E9nero:");
 		labelGenero.setFont(new Font("MS UI Gothic", Font.PLAIN, 24));
 		labelGenero.setHorizontalAlignment(SwingConstants.CENTER);
@@ -87,18 +89,19 @@ public class PantallaNuevoPersonaje extends JPanel {
 		labelGenero.setBackground(new Color(0, 0, 0));
 		labelGenero.setBounds(325, 147, 132, 61);
 		panelCentral.add(labelGenero);
-		
+
 		ButtonGroup grupoGenero = new ButtonGroup();
-		
+
 		final JRadioButton radioHombre = new JRadioButton("Hombre");
 		radioHombre.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				radioHombre.setForeground(new Color(255,0,112));
+				radioHombre.setForeground(new Color(255, 0, 112));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				radioHombre.setForeground(new Color(255,255,255));
+				radioHombre.setForeground(new Color(255, 255, 255));
 			}
 		});
 		radioHombre.setFont(new Font("MS UI Gothic", Font.PLAIN, 22));
@@ -108,16 +111,17 @@ public class PantallaNuevoPersonaje extends JPanel {
 		radioHombre.setHorizontalAlignment(SwingConstants.CENTER);
 		radioHombre.setBounds(325, 214, 132, 28);
 		panelCentral.add(radioHombre);
-		
+
 		final JRadioButton radioMujer = new JRadioButton("Mujer");
 		radioMujer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				radioMujer.setForeground(new Color(255,0,112));
+				radioMujer.setForeground(new Color(255, 0, 112));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				radioMujer.setForeground(new Color(255,255,255));
+				radioMujer.setForeground(new Color(255, 255, 255));
 			}
 		});
 		radioMujer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -130,33 +134,38 @@ public class PantallaNuevoPersonaje extends JPanel {
 
 		grupoGenero.add(radioHombre);
 		grupoGenero.add(radioMujer);
-		
+
 		JButton botonIniciarPartida = new JButton("Iniciar Juego");
 		botonIniciarPartida.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(radioHombre.isSelected()||radioMujer.isSelected()) {
+				if (radioHombre.isSelected() || radioMujer.isSelected()) {
 					String nombrePersonaje = campoNombrePersonaje.getText();
-					boolean generoPersonaje = radioHombre.isSelected(); //Hombre es true y Mujer es false
+					boolean generoPersonaje = radioHombre.isSelected(); // Hombre es true y Mujer es false
 					short vidaPersonaje = (short) 500;
 					short ataquePersonaje = (short) 50;
-					
+
 					try {
-	
-						ventana.protagonista = new Protagonista(nombrePersonaje, generoPersonaje, vidaPersonaje, ataquePersonaje);
-						
-						Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/proyectoprogramacion", "root",
-								"fire_emblem3.");
+
+						Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/proyectoprogramacion",
+								"root", "fire_emblem3.");
 						Statement smt = c.createStatement();
+							
+							ventana.protagonista = new Protagonista(nombrePersonaje, generoPersonaje, vidaPersonaje,
+									ataquePersonaje);
+
+							smt.executeUpdate("insert into protagonista values ('" + ventana.protagonista.getNombre()
+									+ "'," + ventana.protagonista.isGenero() + "," + ventana.protagonista.getVida()
+									+ "," + ventana.protagonista.getAtaque() + "," + ventana.protagonista.getnPantalla()
+									+ ");");
+							smt.close();
+							c.close();
+
+							ventana.irAPantallaDescripcion();
 						
-						smt.executeUpdate(
-								"insert into protagonista values ('" + ventana.protagonista.getNombre() + "'," + ventana.protagonista.isGenero() + "," 
-						+ ventana.protagonista.getVida() + "," + ventana.protagonista.getAtaque() + "," + ventana.protagonista.getnPantalla()+");");
-						smt.close();
-						c.close();
-						
-						ventana.irAPantallaDescripcion();
-					} catch (SQLException e1) {
+					}catch (SQLIntegrityConstraintViolationException e1) {
+						JOptionPane.showMessageDialog(ventana, "Este nombre ya existe. Introduce otro", "Error", JOptionPane.ERROR_MESSAGE);
+					}catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (NombreVacioException e1) {
@@ -166,15 +175,18 @@ public class PantallaNuevoPersonaje extends JPanel {
 						JOptionPane.showMessageDialog(ventana, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 						campoNombrePersonaje.setBackground(new Color(255, 220, 220));
 					}
-				}else {
-					JOptionPane.showMessageDialog(ventana, "No has seleccionado ningún género", "Error", JOptionPane.ERROR_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(ventana, "No has seleccionado ningún género", "Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonIniciarPartida.setForeground(new Color(0,0,0));
-				botonIniciarPartida.setBackground(new Color(255,102,255));
+				botonIniciarPartida.setForeground(new Color(0, 0, 0));
+				botonIniciarPartida.setBackground(new Color(255, 102, 255));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				botonIniciarPartida.setForeground(new Color(255, 255, 255));
@@ -189,29 +201,32 @@ public class PantallaNuevoPersonaje extends JPanel {
 		botonIniciarPartida.setBorderPainted(false);
 		botonIniciarPartida.setFocusable(false);
 		panelCentral.add(botonIniciarPartida);
-		
+
 		JPanel panelInferior = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panelInferior.getLayout();
 		flowLayout.setAlignment(FlowLayout.RIGHT);
 		panelInferior.setForeground(new Color(255, 255, 255));
 		panelInferior.setBackground(new Color(0, 0, 0));
 		add(panelInferior, BorderLayout.SOUTH);
-		
+
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.setContentAreaFilled(false);
 		botonVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		botonVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				campoNombrePersonaje.setText("");
 				ventana.volverAInicio();
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonVolver.setForeground(new Color(255,0,112));
+				botonVolver.setForeground(new Color(255, 0, 112));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
-				botonVolver.setForeground(new Color(255,255,255));
+				botonVolver.setForeground(new Color(255, 255, 255));
 			}
 		});
 		botonVolver.setFont(new Font("MS UI Gothic", Font.PLAIN, 22));
@@ -220,7 +235,6 @@ public class PantallaNuevoPersonaje extends JPanel {
 		botonVolver.setForeground(new Color(255, 255, 255));
 		botonVolver.setBackground(new Color(0, 0, 0));
 		panelInferior.add(botonVolver);
-		
-		
+
 	}
 }
