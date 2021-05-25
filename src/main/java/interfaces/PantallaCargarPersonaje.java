@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -16,12 +17,18 @@ import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
 import javax.swing.JTextField;
+import javax.swing.AbstractListModel;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import javax.swing.JList;
+import javax.swing.border.LineBorder;
+import javax.swing.ListSelectionModel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class PantallaCargarPersonaje extends JPanel{
 
@@ -38,7 +45,7 @@ public class PantallaCargarPersonaje extends JPanel{
 		labelNombre.setBackground(new Color(0, 0, 0));
 		labelNombre.setForeground(new Color(255, 255, 255));
 		labelNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		labelNombre.setBounds(199, 211, 382, 77);
+		labelNombre.setBounds(199, 46, 382, 77);
 		add(labelNombre);
 		
 		campoNombrePersonaje = new JTextField();
@@ -46,7 +53,7 @@ public class PantallaCargarPersonaje extends JPanel{
 		campoNombrePersonaje.setHorizontalAlignment(SwingConstants.CENTER);
 		campoNombrePersonaje.setForeground(new Color(255, 0, 102));
 		campoNombrePersonaje.setBackground(new Color(0, 0, 0));
-		campoNombrePersonaje.setBounds(199, 298, 382, 46);
+		campoNombrePersonaje.setBounds(199, 133, 382, 46);
 		add(campoNombrePersonaje);
 		campoNombrePersonaje.setColumns(10);
 		
@@ -119,8 +126,60 @@ public class PantallaCargarPersonaje extends JPanel{
 				botonBuscar.setBackground(new Color(255, 0, 112));
 			}
 		});
-		botonBuscar.setBounds(321, 389, 140, 46);
+		botonBuscar.setBounds(319, 204, 140, 46);
 		add(botonBuscar);
+		
+		JScrollPane scrollPersonajes = new JScrollPane();
+		scrollPersonajes.setSize(390, 240);
+		scrollPersonajes.setLocation(200, 332);
+		add(scrollPersonajes);
+		
+		JList listaPersonajes = new JList();
+		listaPersonajes.setToolTipText("");
+		listaPersonajes.setBorder(new LineBorder(new Color(255, 255, 255)));
+		
+		ArrayList<String> personajesRegistrados = new ArrayList<String>();
+		Connection c;
+		try {
+			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/proyectoprogramacion", "root",
+					"fire_emblem3.");
+			Statement smt = c.createStatement();
+			
+			//Hacemos la consulta con select buscando los nombres de todos los protagonistas:
+			ResultSet nombresPersonaje = smt.executeQuery("select nombre from protagonista;");
+			
+			//Metemos todos los nombres en el arrayList:
+			while(nombresPersonaje.next()) {
+
+				String nombre = nombresPersonaje.getString("nombre");
+			
+				personajesRegistrados.add(nombre);
+			}
+			
+			listaPersonajes.setModel(new AbstractListModel() {
+
+				public int getSize() {
+					return personajesRegistrados.size(); // tamaño del array list
+				}
+
+				public Object getElementAt(int index) {
+					return personajesRegistrados.get(index); // obtiene los valores del array list
+				}
+			});
+			
+			smt.close();
+			c.close();
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+
+		listaPersonajes.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
+		listaPersonajes.setForeground(new Color(255, 255, 255));
+		listaPersonajes.setBackground(new Color(0, 0, 0));
+		listaPersonajes.setBounds(199, 328, 397, 244);
+		scrollPersonajes.setViewportView(listaPersonajes);
+		//add(listaPersonajes);
 		
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.addMouseListener(new MouseAdapter() {
@@ -147,8 +206,6 @@ public class PantallaCargarPersonaje extends JPanel{
 		botonVolver.setBackground(new Color(0, 0, 0));
 		botonVolver.setBounds(660, 610, 132, 46);
 		add(botonVolver);
-		
-		
 		
 		
 	}

@@ -8,6 +8,11 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -18,7 +23,10 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
 import clases.Adversario;
+import clases.Curativa;
+import clases.Pocion;
 import enumeraciones.Enemigos;
+import enumeraciones.Pociones;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
@@ -133,6 +141,45 @@ public class PantallaEscenario1 extends JPanel {
 		labelEnemigo2.setBounds(231, 178, 118, 106);
 		panelCentral.add(labelEnemigo2);
 		
+		JLabel labelPocion1 = new JLabel("");
+		labelPocion1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				/*try {
+					Pocion galleta = new Curativa("Galleta", Pociones.CURATIVA, (byte)30);
+					ArrayList<Pocion >inventario = ventana.protagonista.getInventario();
+					inventario.add(galleta);
+					
+					Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/proyectoprogramacion",
+							"root", "fire_emblem3.");
+					Statement smt = c.createStatement();
+					
+					
+					smt.executeUpdate("insert into pocion values ('" + galleta.getNombre()
+					+ "'," + ventana.protagonista.isGenero() + "," + ventana.protagonista.getVida()
+					+ "," + ventana.protagonista.getAtaque() + "," + ventana.protagonista.getnPantalla()
+					+ ");");
+					
+					smt.close();
+					c.close();
+					
+					
+				} catch (NombreVacioException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NombreConNumerosException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}*/
+			}
+		});
+		labelPocion1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		labelPocion1.setBounds(375, 409, 88, 68);
+		panelCentral.add(labelPocion1);
+		
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setBackground(new Color(0, 0, 0));
 		labelFondo.setIcon(new ImageIcon(
@@ -141,6 +188,8 @@ public class PantallaEscenario1 extends JPanel {
 		labelFondo.setBounds(0, 0, 800, 600);
 		// labelFondo.setSize(800, 600);
 		panelCentral.add(labelFondo);
+		
+		
 		
 		
 

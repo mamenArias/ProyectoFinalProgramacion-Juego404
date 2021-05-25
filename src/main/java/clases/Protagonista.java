@@ -1,5 +1,6 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ public class Protagonista extends Personaje {
 
 	private boolean genero;
 	private byte nPantalla;
+	private ArrayList<Pocion> inventario;
 	private Ventana ventana;
 
 	/**
@@ -30,6 +32,7 @@ public class Protagonista extends Personaje {
 		super.setVida(vida);
 		super.setAtaque(ataque);
 		this.nPantalla = 1;
+		this.inventario = new ArrayList<Pocion>();
 	
 	}
 	
@@ -39,9 +42,25 @@ public class Protagonista extends Personaje {
 		super.setVida(vida);
 		super.setAtaque(ataque);
 		this.nPantalla = pantalla;
+		this.inventario = new ArrayList<Pocion>();
 	}
 
 	
+	
+	/**
+	 * @return the inventario
+	 */
+	public ArrayList<Pocion> getInventario() {
+		return inventario;
+	}
+
+	/**
+	 * @param inventario the inventario to set
+	 */
+	public void setInventario(ArrayList<Pocion> inventario) {
+		this.inventario = inventario;
+	}
+
 	/**
 	 * @return the nPantalla
 	 */

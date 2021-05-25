@@ -1,17 +1,22 @@
 package clases;
 
 import enumeraciones.Pociones;
+import excepciones.NombreConNumerosException;
+import excepciones.NombreVacioException;
 
-public class Pocion {
+public class Pocion extends ElementoJuego {
 
 	private Pociones tipoPocion;
 
 	
 	/**
+	 * @param nombre
 	 * @param tipoPocion
+	 * @throws NombreConNumerosException 
+	 * @throws NombreVacioException 
 	 */
-	public Pocion(Pociones tipoPocion) {
-		super();
+	public Pocion(String nombre, Pociones tipoPocion) throws NombreVacioException, NombreConNumerosException {
+		super(nombre);
 		this.tipoPocion = tipoPocion;
 	}
 
