@@ -148,10 +148,10 @@ public class Ventana extends JFrame{
 	}
 	
 	public void irAPantallaBatalla() {
-		if(this.pantallaBatalla == null) {
-			this.pantallaBatalla = new PantallaBatalla(this);
+		if(this.pantallaBatalla != null) {
+			this.pantallaBatalla.setVisible(false);
 		}
-		
+		this.pantallaBatalla = new PantallaBatalla(this);
 		if(this.pantallaEscenario1 != null) {
 			this.pantallaEscenario1.setVisible(false);
 		}

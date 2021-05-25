@@ -79,7 +79,8 @@ public class PantallaBatalla extends JPanel {
 		labelImagenEnemigo.setBounds(197, 113, 421, 370);
 		add(labelImagenEnemigo);
 		
-		JLabel labelVidaProta = new JLabel("<html><body>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida());
+		JLabel labelVidaProta = new JLabel("<html><body style='text-align:center'>" + v.protagonista.getNombre() 
+		+ ":<br>Vida: " + v.protagonista.getVida() + "</body></html>");
 		labelVidaProta.setHorizontalAlignment(SwingConstants.CENTER);
 		labelVidaProta.setFont(new Font("MS UI Gothic", Font.BOLD, 20));
 		labelVidaProta.setForeground(new Color(255, 153, 255));
@@ -97,6 +98,16 @@ public class PantallaBatalla extends JPanel {
 		menuConversacion.setBackground(new Color(0, 0, 0));
 		add(menuConversacion);*/
 		
+		JLabel textoBatalla = new JLabel();
+		textoBatalla.setHorizontalAlignment(SwingConstants.CENTER);
+		textoBatalla.setBounds(10, 245, 177, 238);
+		textoBatalla.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
+		textoBatalla.setForeground(new Color(255, 255, 255));
+		textoBatalla.setBackground(new Color(0, 0, 0));
+		textoBatalla.setOpaque(false);
+		textoBatalla.setAlignmentY(CENTER_ALIGNMENT);
+		add(textoBatalla);
+		
 		JPanel panelHablar = new JPanel();
 		panelHablar.setVisible(false);
 		panelHablar.setBackground(new Color(0, 0, 0));
@@ -113,6 +124,7 @@ public class PantallaBatalla extends JPanel {
 		labelOpcion3.setHorizontalAlignment(SwingConstants.CENTER);
 		labelOpcion3.setForeground(new Color(255, 255, 255));
 		labelOpcion3.setBackground(new Color(0, 0, 0));
+		labelOpcion3.setOpaque(false);
 		labelOpcion3.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
 		labelOpcion3.setBounds(1, 71, 744, 28);
 		panelHablar.add(labelOpcion3);
@@ -122,6 +134,7 @@ public class PantallaBatalla extends JPanel {
 		labelOpcion2.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
 		labelOpcion2.setForeground(new Color(255, 255, 255));
 		labelOpcion2.setBackground(new Color(0, 0, 0));
+		labelOpcion2.setOpaque(false);
 		labelOpcion2.setBounds(1, 33, 744, 28);
 		panelHablar.add(labelOpcion2);
 		
@@ -130,22 +143,16 @@ public class PantallaBatalla extends JPanel {
 		labelOpcion1.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
 		labelOpcion1.setForeground(new Color(255, 255, 255));
 		labelOpcion1.setBackground(new Color(0, 0, 0));
+		labelOpcion1.setOpaque(false);
 		labelOpcion1.setBounds(1, 0, 744, 28);
 		panelHablar.add(labelOpcion1);
-		
-		JLabel textoBatalla = new JLabel();
-		textoBatalla.setBounds(559, 0, 186, 99);
-		panelHablar.add(textoBatalla);
-		textoBatalla.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
-		textoBatalla.setForeground(new Color(255, 255, 255));
-		textoBatalla.setBackground(new Color(0, 0, 0));
-		textoBatalla.setAlignmentY(CENTER_ALIGNMENT);
 		
 		JPanel panelMenuBatalla = new JPanel();
 		panelMenuBatalla.setAlignmentY(CENTER_ALIGNMENT);
 		panelMenuBatalla.setBounds(0, 609, 799, 54);
 		panelMenuBatalla.setForeground(new Color(255, 255, 255));
 		panelMenuBatalla.setBackground(new Color(0, 0, 0));
+		panelMenuBatalla.setOpaque(false);
 		Border bordeMenu = new LineBorder(new Color(255,255,255));
 		panelMenuBatalla.setBorder(bordeMenu);
 		add(panelMenuBatalla);
@@ -163,15 +170,17 @@ public class PantallaBatalla extends JPanel {
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				panelHablar.setVisible(false);
+				textoBatalla.setVisible(true);
 				v.protagonista.atacar(v.enemigo);
 				//JOptionPane.showMessageDialog(ventana, "¿Cómo te atreves a pegarle al pobre Patito?");
-				textoBatalla.setText("<html><body>  \u00A1Has atacado al Patito!<br>  Ahora su vida es de: " + v.enemigo.getVida()
+				textoBatalla.setText("<html><body style='text-align:center'>  \u00A1Has atacado al Patito!<br>  Ahora su vida es de: " + v.enemigo.getVida()
 				+ "<br>  El patito te ha atacado...</body></html>");
-				if(v.enemigo.getVida() == 0) {
-					v.irAPantallaEscenario1();
+				if(ventana.enemigo.getVida() == 0) {
+					ventana.irAPantallaEscenario1();
 				}
 				v.enemigo.atacar(v.protagonista);
-				labelVidaProta.setText("Vida: " + v.protagonista.getVida());
+				labelVidaProta.setText("<html><body>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida());
 				if(v.protagonista.getVida() == 0) {
 					v.irAPantallaGameOver();
 				}

@@ -65,7 +65,7 @@ public class PantallaEscenario1 extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					v.enemigo = new Adversario("Donaldo", (short)200, (short)100, Enemigos.PATITO);
+					ventana.enemigo = new Adversario("Donaldo", (short)200, (short)100, Enemigos.PATITO);
 				} catch (NombreVacioException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -76,9 +76,11 @@ public class PantallaEscenario1 extends JPanel {
 				ventana.irAPantallaBatalla();
 			}
 		});
+		
 		labelEnemigo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelEnemigo.setBounds(100, 350, 45, 45);
 		panelCentral.add(labelEnemigo);
+
 
 		JLabel labelLlave = new JLabel("");
 		labelLlave.addMouseListener(new MouseAdapter() {

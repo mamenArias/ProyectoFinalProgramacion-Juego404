@@ -30,6 +30,7 @@ public class Protagonista extends Personaje {
 		super.setVida(vida);
 		super.setAtaque(ataque);
 		this.nPantalla = 1;
+	
 	}
 	
 	public Protagonista(String nombre, boolean genero, short vida, short ataque, byte pantalla) throws NombreVacioException, NombreConNumerosException {
