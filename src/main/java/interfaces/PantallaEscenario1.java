@@ -107,11 +107,11 @@ public class PantallaEscenario1 extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (llave) {
-					JOptionPane.showConfirmDialog(ventana, "No podrás volver, ¿estás seguro que deseas continuar?",
-							"Aviso", JOptionPane.OK_CANCEL_OPTION);
-					v.irAPantallaEscenario2();
-					// JOptionPane.showMessageDialog(ventana, "No podrás volver a esta habitación,
-					// ¿estás seguro que deseas salir?", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					int opcionSalir = JOptionPane.showConfirmDialog(ventana, "No podrás volver, ¿estás seguro que deseas continuar?",
+							"Aviso", JOptionPane.YES_NO_OPTION);
+					if (opcionSalir == JOptionPane.YES_OPTION) {
+						ventana.irAPantallaFinDemo();
+					}
 				} else {
 					textoJuego.setText("Puerta Cerrada");
 				}

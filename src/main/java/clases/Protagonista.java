@@ -92,15 +92,6 @@ public class Protagonista extends Personaje {
 		this.genero = genero;
 	}
 
-	public void hablar(JButton b) {
-		
-		if(b.equals("botonOpcion1")) {
-			JOptionPane.showMessageDialog(ventana, "Boton 1", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-		} else if (b.equals("botonOpcion2")) {
-			JOptionPane.showMessageDialog(ventana, "Boton2", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-		}
-	}
-
 	/**
 	 * Función para que el protagonista pueda huir de la batalla. Si lo consigue, se
 	 * vuelve a la pantalla en la que se encontraba. Si no lo consigue, recibe un
@@ -122,6 +113,14 @@ public class Protagonista extends Personaje {
 	
 	public void atacar(Adversario a) {
 		a.bajarVida((short)new Random().nextInt(this.getAtaque()));
+		if (a.getVida() <= 0) {
+			a.setVida((short)0);
+			JOptionPane.showMessageDialog(ventana, "Has vencido", "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	public void ataqueHablando(Adversario a, short ataque) {
+		a.bajarVida(ataque);
 		if (a.getVida() <= 0) {
 			a.setVida((short)0);
 			JOptionPane.showMessageDialog(ventana, "Has vencido", "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
