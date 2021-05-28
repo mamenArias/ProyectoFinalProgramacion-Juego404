@@ -4,38 +4,36 @@ import enumeraciones.Pociones;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
+/**
+ * Clase de la poción de ataque
+ * 
+ * @author Mamen Arias
+ *
+ */
 public class DeAtaque extends Pocion {
 
-	private Byte daño; // nivel de daño aumentado de la poción
-
-
-	
+	private short daño; // nivel de daño aumentado de la poción
 
 	/**
-	 * @param tipoPocion
-	 * @param daño
-	 * @throws NombreConNumerosException 
-	 * @throws NombreVacioException 
+	 * Constructor de la clase DeAtaque
+	 * 
+	 * @param tipoPocion tipo de poción
+	 * @param daño       cantidad de aumento del ataque del personaje
+	 * @throws NombreVacioException      excepción cuando el nombre del enemigo está en blanco
+	 * @throws NombreConNumerosException excepción cuando el nombre del enemigo contiene números
 	 */
-	public DeAtaque(String nombre, Pociones tipoPocion, Byte daño) throws NombreVacioException, NombreConNumerosException {
+	public DeAtaque(String nombre, Pociones tipoPocion, short daño)
+			throws NombreVacioException, NombreConNumerosException {
 		super(nombre, tipoPocion);
 		this.daño = daño;
 	}
-
-	/**
-	 * @param daño
-	 */
-	/*public DeAtaque(Byte daño) {
-		super(Pociones.DEATAQUE);
-		this.daño = daño;
-	}*/
 
 	/**
 	 * Nivel de daño obtenido al tomar la poción
 	 * 
 	 * @return daño obtenido
 	 */
-	public Byte getDaño() {
+	public short getDaño() {
 		return daño;
 	}
 
@@ -44,7 +42,7 @@ public class DeAtaque extends Pocion {
 	 * 
 	 * @param nuevo nivel de daño
 	 */
-	public void setDaño(Byte daño) {
+	public void setDaño(short daño) {
 		this.daño = daño;
 	}
 

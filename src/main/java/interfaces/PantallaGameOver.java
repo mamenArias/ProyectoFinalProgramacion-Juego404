@@ -11,25 +11,39 @@ import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PantallaGameOver extends JPanel{
+/**
+ * Interfaz de la pantalla Game Over cuando te matan
+ * 
+ * @author Mamen Arias
+ *
+ */
+public class PantallaGameOver extends JPanel {
 
-	private Ventana ventana;
-	
+	private Ventana ventana; // ventana
+
+	/**
+	 * Constructor de la clase PantallaGameOver con todas las características de la
+	 * interfaz
+	 * 
+	 * @param v ventana
+	 */
 	public PantallaGameOver(Ventana v) {
 		this.ventana = v;
 		setLayout(null);
-		
-		
+
+		// botón para volver al menú inicial
 		JButton botonVolver = new JButton("Volver a la pantalla de t\u00EDtulo");
 		botonVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonVolver.setForeground(new Color(255,0,102));
+				botonVolver.setForeground(new Color(255, 0, 102));
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				botonVolver.setForeground(new Color(255, 255, 255));
 			}
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				v.volverAInicio();
@@ -44,13 +58,14 @@ public class PantallaGameOver extends JPanel{
 		botonVolver.setFont(new Font("MS UI Gothic", Font.BOLD, 24));
 		botonVolver.setBounds(200, 589, 409, 70);
 		add(botonVolver);
-		
+
+		// imagen de fondo
 		JLabel labelGameOver = new JLabel("");
-		labelGameOver.setIcon(new ImageIcon("F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\gameover1.jpg"));
+		labelGameOver.setIcon(new ImageIcon(
+				"F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\gameover1.jpg"));
 		labelGameOver.setHorizontalAlignment(SwingConstants.CENTER);
 		labelGameOver.setBounds(0, -96, 801, 788);
 		add(labelGameOver);
-		
-		
+
 	}
 }

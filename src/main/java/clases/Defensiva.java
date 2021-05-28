@@ -4,38 +4,36 @@ import enumeraciones.Pociones;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
+/**
+ * Clase de la poción Defensiva
+ * 
+ * @author Mamen Arias
+ *
+ */
 public class Defensiva extends Pocion {
 
-	private Byte proteccion; // protección que da la poción
-	
-
-	
+	private short proteccion; // protección que da la poción
 
 	/**
-	 * @param tipoPocion
-	 * @param proteccion
-	 * @throws NombreConNumerosException 
-	 * @throws NombreVacioException 
+	 * Constructor de la clase Defensiva
+	 * 
+	 * @param tipoPocion tipo de poción
+	 * @param proteccion cantidad de disminución del ataque del personaje
+	 * @throws NombreVacioException      excepción cuando el nombre del enemigo está en blanco
+	 * @throws NombreConNumerosException excepción cuando el nombre del enemigo contiene números
 	 */
-	public Defensiva(String nombre, Pociones tipoPocion, Byte proteccion) throws NombreVacioException, NombreConNumerosException {
+	public Defensiva(String nombre, Pociones tipoPocion, short proteccion)
+			throws NombreVacioException, NombreConNumerosException {
 		super(nombre, tipoPocion);
 		this.proteccion = proteccion;
 	}
-
-	/**
-	 * @param proteccion
-	 */
-	/*public Defensiva(Byte proteccion) {
-		super(Pociones.DEFENSIVA);
-		this.proteccion = proteccion;
-	}*/
 
 	/**
 	 * Protección obtenida al tomar la poción
 	 * 
 	 * @return protección
 	 */
-	public Byte getProteccion() {
+	public short getProteccion() {
 		return proteccion;
 	}
 
@@ -44,7 +42,7 @@ public class Defensiva extends Pocion {
 	 * 
 	 * @param nueva protección
 	 */
-	public void setProteccion(Byte proteccion) {
+	public void setProteccion(short proteccion) {
 		this.proteccion = proteccion;
 	}
 

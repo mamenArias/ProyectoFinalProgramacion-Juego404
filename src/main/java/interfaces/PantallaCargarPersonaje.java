@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,7 +14,6 @@ import clases.Protagonista;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
-import javax.swing.JTextField;
 import javax.swing.AbstractListModel;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -27,13 +24,24 @@ import java.awt.Font;
 import javax.swing.JList;
 import javax.swing.border.LineBorder;
 import javax.swing.ListSelectionModel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
+/**
+ * Interfaz para cargar la partida de un personaje ya guardado anteriormente
+ * 
+ * @author Mamen Arias
+ *
+ */
 public class PantallaCargarPersonaje extends JPanel {
 
-	private Ventana ventana;
+	private Ventana ventana; // ventana
 
+	/**
+	 * Constructor de la clase PantallaCargarPersonaje con todas las características
+	 * de la interfaz
+	 * 
+	 * @param v ventana
+	 */
 	public PantallaCargarPersonaje(Ventana v) {
 		setBackground(new Color(0, 0, 0));
 		this.ventana = v;
@@ -47,12 +55,14 @@ public class PantallaCargarPersonaje extends JPanel {
 		labelNombre.setBounds(199, 46, 382, 77);
 		add(labelNombre);
 
+		// un scroll para poder ver todo la lista de personajes guardados
 		JScrollPane scrollPersonajes = new JScrollPane();
 		scrollPersonajes.setBackground(new Color(255, 255, 255));
 		scrollPersonajes.setSize(382, 365);
 		scrollPersonajes.setLocation(199, 133);
 		add(scrollPersonajes);
 
+		// lista de personajes guardados obtenidos de la base de datos
 		JList listaPersonajes = new JList();
 		listaPersonajes.setSelectionForeground(new Color(0, 0, 0));
 		listaPersonajes.setSelectionBackground(new Color(255, 102, 153));
@@ -60,7 +70,6 @@ public class PantallaCargarPersonaje extends JPanel {
 		listaPersonajes.setToolTipText("");
 		listaPersonajes.setBorder(new LineBorder(new Color(255, 255, 255)));
 
-		ArrayList<String> personajesRegistrados = new ArrayList<String>();
 		Connection c;
 		try {
 			c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/proyectoprogramacion", "root",
@@ -71,22 +80,23 @@ public class PantallaCargarPersonaje extends JPanel {
 			// protagonistas:
 			ResultSet nombresPersonaje = smt.executeQuery("select nombre from protagonista;");
 
-			// Metemos todos los nombres en el arrayList:
+			// recorremos la base de datos para almacenar todos los nombres en el arraylist
+			// de personajes guardados
 			while (nombresPersonaje.next()) {
 
 				String nombre = nombresPersonaje.getString("nombre");
 
-				personajesRegistrados.add(nombre);
+				ventana.personajesRegistrados.add(nombre);
 			}
 
 			listaPersonajes.setModel(new AbstractListModel() {
 
 				public int getSize() {
-					return personajesRegistrados.size(); // tamaño del array list
+					return ventana.personajesRegistrados.size(); // tamaño del array list
 				}
 
 				public Object getElementAt(int index) {
-					return personajesRegistrados.get(index); // obtiene los valores del array list
+					return ventana.personajesRegistrados.get(index); // obtiene los valores del array list
 				}
 			});
 
@@ -104,6 +114,8 @@ public class PantallaCargarPersonaje extends JPanel {
 		scrollPersonajes.setViewportView(listaPersonajes);
 		// add(listaPersonajes);
 
+		// botón para cargar el personaje y mandarnos a la pantalla en la que se haya
+		// quedado durante el juego
 		JButton botonCargar = new JButton("Cargar");
 		botonCargar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		botonCargar.setForeground(new Color(255, 255, 255));
@@ -180,6 +192,7 @@ public class PantallaCargarPersonaje extends JPanel {
 		botonCargar.setBounds(327, 536, 140, 46);
 		add(botonCargar);
 
+		// botón para volver al menú inicial
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.addMouseListener(new MouseAdapter() {
 			@Override

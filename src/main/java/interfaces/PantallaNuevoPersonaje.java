@@ -15,13 +15,10 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
-import clases.Personaje;
 import clases.Protagonista;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -29,20 +26,29 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
+/**
+ * Interfaz para la creación de un nuevo personaje y partida
+ * 
+ * @author Mamen Arias
+ *
+ */
 public class PantallaNuevoPersonaje extends JPanel {
 
-	private Ventana ventana;
-	private JTextField campoNombrePersonaje;
+	private Ventana ventana; // ventana
+	private JTextField campoNombrePersonaje; // campo donde introducir el nombre de tu personaje
 
+	/**
+	 * Constructor de la clase PantallaNuevoPersonaje con todas las características
+	 * de la interfaz
+	 * 
+	 * @param v ventana
+	 */
 	public PantallaNuevoPersonaje(Ventana v) {
 		setForeground(new Color(255, 255, 255));
 		setBackground(new Color(0, 0, 0));
@@ -73,6 +79,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		labelNombre.setBackground(new Color(0, 0, 0));
 		panelCentral.add(labelNombre);
 
+		// campo donde introducir el nombre de tu personaje nuevo
 		campoNombrePersonaje = new JTextField();
 		campoNombrePersonaje.setFont(new Font("MS UI Gothic", Font.PLAIN, 22));
 		campoNombrePersonaje.setForeground(new Color(255, 0, 112));
@@ -82,6 +89,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		panelCentral.add(campoNombrePersonaje);
 		campoNombrePersonaje.setColumns(10);
 
+		// selección de género del personaje
 		JLabel labelGenero = new JLabel("G\u00E9nero:");
 		labelGenero.setFont(new Font("MS UI Gothic", Font.PLAIN, 24));
 		labelGenero.setHorizontalAlignment(SwingConstants.CENTER);
@@ -92,6 +100,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 
 		ButtonGroup grupoGenero = new ButtonGroup();
 
+		// opción hombre
 		final JRadioButton radioHombre = new JRadioButton("Hombre");
 		radioHombre.addMouseListener(new MouseAdapter() {
 			@Override
@@ -112,6 +121,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		radioHombre.setBounds(325, 214, 132, 28);
 		panelCentral.add(radioHombre);
 
+		// opción mujer
 		final JRadioButton radioMujer = new JRadioButton("Mujer");
 		radioMujer.addMouseListener(new MouseAdapter() {
 			@Override
@@ -135,10 +145,13 @@ public class PantallaNuevoPersonaje extends JPanel {
 		grupoGenero.add(radioHombre);
 		grupoGenero.add(radioMujer);
 
+		// botón para iniciar la partida cuando se hayan completado correctamente los
+		// campos anteriores
 		JButton botonIniciarPartida = new JButton("Iniciar Juego");
 		botonIniciarPartida.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				// se crea el nuevo personaje y se almacena en la base de datos
 				if (radioHombre.isSelected() || radioMujer.isSelected()) {
 					String nombrePersonaje = campoNombrePersonaje.getText();
 					boolean generoPersonaje = radioHombre.isSelected(); // Hombre es true y Mujer es false
@@ -150,22 +163,22 @@ public class PantallaNuevoPersonaje extends JPanel {
 						Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/proyectoprogramacion",
 								"root", "fire_emblem3.");
 						Statement smt = c.createStatement();
-							
-							ventana.protagonista = new Protagonista(nombrePersonaje, generoPersonaje, vidaPersonaje,
-									ataquePersonaje);
 
-							smt.executeUpdate("insert into protagonista values ('" + ventana.protagonista.getNombre()
-									+ "'," + ventana.protagonista.isGenero() + "," + ventana.protagonista.getVida()
-									+ "," + ventana.protagonista.getAtaque() + "," + ventana.protagonista.getnPantalla()
-									+ ");");
-							smt.close();
-							c.close();
+						ventana.protagonista = new Protagonista(nombrePersonaje, generoPersonaje, vidaPersonaje,
+								ataquePersonaje);
 
-							ventana.irAPantallaDescripcion();
-						
-					}catch (SQLIntegrityConstraintViolationException e1) {
-						JOptionPane.showMessageDialog(ventana, "Este nombre ya existe. Introduce otro", "Error", JOptionPane.ERROR_MESSAGE);
-					}catch (SQLException e1) {
+						smt.executeUpdate("insert into protagonista values ('" + ventana.protagonista.getNombre() + "',"
+								+ ventana.protagonista.isGenero() + "," + ventana.protagonista.getVida() + ","
+								+ ventana.protagonista.getAtaque() + "," + ventana.protagonista.getnPantalla() + ");");
+						smt.close();
+						c.close();
+
+						ventana.irAPantallaDescripcion();
+
+					} catch (SQLIntegrityConstraintViolationException e1) {
+						JOptionPane.showMessageDialog(ventana, "Este nombre ya existe. Introduce otro", "Error",
+								JOptionPane.ERROR_MESSAGE);
+					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (NombreVacioException e1) {
@@ -209,6 +222,7 @@ public class PantallaNuevoPersonaje extends JPanel {
 		panelInferior.setBackground(new Color(0, 0, 0));
 		add(panelInferior, BorderLayout.SOUTH);
 
+		// botón para volver a la pantalla inicial del juego
 		JButton botonVolver = new JButton("Volver");
 		botonVolver.setContentAreaFilled(false);
 		botonVolver.setCursor(new Cursor(Cursor.HAND_CURSOR));

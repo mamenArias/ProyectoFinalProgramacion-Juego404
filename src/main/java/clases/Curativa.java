@@ -4,38 +4,36 @@ import enumeraciones.Pociones;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
+/**
+ * Clase de la poción curativa
+ * 
+ * @author Mamen Arias
+ *
+ */
 public class Curativa extends Pocion {
 
-	private Byte curacion; // nivel de curación de la poción
-
-
-	
+	private short curacion; // nivel de curación de la poción
 
 	/**
-	 * @param tipoPocion
-	 * @param curacion
-	 * @throws NombreConNumerosException 
-	 * @throws NombreVacioException 
+	 * Constructor de la clase Curativa
+	 * 
+	 * @param tipoPocion tipo de poción
+	 * @param curacion   curación sobre la vida del personaje
+	 * @throws NombreVacioException      excepción cuando el nombre del enemigo está en blanco
+	 * @throws NombreConNumerosException excepción cuando el nombre del enemigo contiene números
 	 */
-	public Curativa(String nombre, Pociones tipoPocion, Byte curacion) throws NombreVacioException, NombreConNumerosException {
+	public Curativa(String nombre, Pociones tipoPocion, short curacion)
+			throws NombreVacioException, NombreConNumerosException {
 		super(nombre, tipoPocion);
 		this.curacion = curacion;
 	}
-
-	/**
-	 * @param curacion
-	 */
-	/*public Curativa(Byte curacion) {
-		super(Pociones.CURATIVA);
-		this.curacion = curacion;
-	}*/
 
 	/**
 	 * Nivel de curación de la poción
 	 * 
 	 * @return curación obtenida
 	 */
-	public Byte getCuracion() {
+	public short getCuracion() {
 		return curacion;
 	}
 
@@ -44,7 +42,7 @@ public class Curativa extends Pocion {
 	 * 
 	 * @param nuevo valor de la curación
 	 */
-	public void setCuracion(Byte curacion) {
+	public void setCuracion(short curacion) {
 		this.curacion = curacion;
 	}
 

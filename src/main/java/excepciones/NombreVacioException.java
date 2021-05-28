@@ -1,8 +1,14 @@
 package excepciones;
 
-public class NombreVacioException extends Exception{
+/**
+ * Excepción para que los nombres no puedan estar vacíos
+ * 
+ * @author Mamen Arias
+ *
+ */
+public class NombreVacioException extends Exception {
 
-	public NombreVacioException (String msg) {
+	public NombreVacioException(String msg) {
 		super(msg);
 	}
 }

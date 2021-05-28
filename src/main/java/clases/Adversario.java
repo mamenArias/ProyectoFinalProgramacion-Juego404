@@ -6,28 +6,34 @@ import enumeraciones.Enemigos;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 
-public class Adversario extends Personaje{
+/**
+ * Clase de los enemigos creados en el juego
+ * 
+ * @author Mamen Arias
+ *
+ */
+public class Adversario extends Personaje {
 
-	private Enemigos tipoEnemigo;
-	private String respuestaAmistosa;
-	private String respuestaNeutral;
-	private String respuestaAgresiva;
-	
+	private Enemigos tipoEnemigo; // tipo de enemigo
+	private String respuestaAmistosa; // respuesta cuando eliges la opción correcta al hablar en las batallas
+	private String respuestaNeutral; // respuesta cuando eliges la opción neutral al hablar en las batallas
+	private String respuestaAgresiva; // respuesta cuando eliges la opción incorrecta al hablar en las batallas
 
 	/**
 	 * Constructor de la clase Adversario
-	 * @param nombre nombre del enemigo
-	 * @param vida nivel de vida
-	 * @param ataque cantidad de ataque
-	 * @param tipoEnemigo tipo de enemigo
+	 * 
+	 * @param nombre            nombre del enemigo
+	 * @param vida              nivel de vida
+	 * @param ataque            cantidad de ataque
+	 * @param tipoEnemigo       tipo de enemigo
 	 * @param respuestaAmistosa respuesta cuando elegimos la opción correcta
-	 * @param respuestaNeutral respuesta cuando elegimos la opción neutra
+	 * @param respuestaNeutral  respuesta cuando elegimos la opción neutra
 	 * @param respuestaAgresiva respuesta cuando elegimos la opción incorrecta
-	 * @throws NombreVacioException 
-	 * @throws NombreConNumerosException 
+	 * @throws NombreVacioException      excepción cuando el nombre del enemigo está en blanco
+	 * @throws NombreConNumerosException excepción cuando el nombre del enemigo contiene números
 	 */
-	public Adversario(String nombre, Short vida, Short ataque, Enemigos tipoEnemigo,
-			String respuestaAmistosa, String respuestaNeutral, String respuestaAgresiva) throws NombreVacioException, NombreConNumerosException {
+	public Adversario(String nombre, Short vida, Short ataque, Enemigos tipoEnemigo, String respuestaAmistosa,
+			String respuestaNeutral, String respuestaAgresiva) throws NombreVacioException, NombreConNumerosException {
 		super(nombre);
 		super.setVida(vida);
 		super.setAtaque(ataque);
@@ -36,67 +42,106 @@ public class Adversario extends Personaje{
 		this.respuestaNeutral = respuestaNeutral;
 		this.respuestaAgresiva = respuestaAgresiva;
 	}
-	
-	public Adversario(String nombre, short vida, short ataque, Enemigos tipoEnemigo) throws NombreVacioException, NombreConNumerosException {
+
+	/**
+	 * Constructor de la clase Adversario
+	 * 
+	 * @param nombre      nombre del enemigo
+	 * @param vida        vida del enemigo
+	 * @param ataque      ataque del enemigo
+	 * @param tipoEnemigo tipo de enemigo
+	 * @throws NombreVacioException      excepción cuando el nombre del enemigo está en blanco
+	 * @throws NombreConNumerosException excepción cuando el nombre del enemigo contiene números
+	 */
+	public Adversario(String nombre, short vida, short ataque, Enemigos tipoEnemigo)
+			throws NombreVacioException, NombreConNumerosException {
 		super(nombre);
 		super.setVida(vida);
 		super.setAtaque(ataque);
 		this.tipoEnemigo = tipoEnemigo;
 	}
+
 	/**
-	 * @return the tipoEnemigo
+	 * Obtiene el tipo de enemigo
+	 * 
+	 * @return tipoEnemigo
 	 */
 	public Enemigos getTipoEnemigo() {
 		return tipoEnemigo;
 	}
+
 	/**
-	 * @param tipoEnemigo the tipoEnemigo to set
+	 * Establece un nuevo tipo de enemigo
+	 * 
+	 * @param tipoEnemigo nuevo
 	 */
 	public void setTipoEnemigo(Enemigos tipoEnemigo) {
 		this.tipoEnemigo = tipoEnemigo;
 	}
 
 	/**
-	 * @return the respuestaAmistosa
+	 * Obtiene el tipo de respuesta amistosa
+	 * 
+	 * @return respuestaAmistosa
 	 */
 	public String getRespuestaAmistosa() {
 		return respuestaAmistosa;
 	}
+
 	/**
-	 * @param respuestaAmistosa the respuestaAmistosa to set
+	 * Establece una nueva respuesta amistosa
+	 * 
+	 * @param respuestaAmistosa nueva
 	 */
 	public void setRespuestaAmistosa(String respuestaAmistosa) {
 		this.respuestaAmistosa = respuestaAmistosa;
 	}
+
 	/**
-	 * @return the respuestaNeutral
+	 * Obtiene el tipo de respuesta neutral
+	 * 
+	 * @return respuestaNeutral
 	 */
 	public String getRespuestaNeutral() {
 		return respuestaNeutral;
 	}
+
 	/**
-	 * @param respuestaNeutral the respuestaNeutral to set
+	 * Establece una nueva respuesta neutral
+	 * 
+	 * @param respuestaNeutral nueva
 	 */
 	public void setRespuestaNeutral(String respuestaNeutral) {
 		this.respuestaNeutral = respuestaNeutral;
 	}
+
 	/**
-	 * @return the respuestaAgresiva
+	 * Obtiene el tipo de respuesta agresiva
+	 * 
+	 * @return respuestaAgresiva
 	 */
 	public String getRespuestaAgresiva() {
 		return respuestaAgresiva;
 	}
+
 	/**
-	 * @param respuestaAgresiva the respuestaAgresiva to set
+	 * Establece una nueva respuesta agresiva
+	 * 
+	 * @param respuestaAgresiva nueva
 	 */
 	public void setRespuestaAgresiva(String respuestaAgresiva) {
 		this.respuestaAgresiva = respuestaAgresiva;
 	}
-	
+
+	/**
+	 * Función usada para atacar al protagonista del juego
+	 * 
+	 * @param p protagonista
+	 */
 	public void atacar(Protagonista p) {
-		p.bajarVida((short)new Random().nextInt(this.getAtaque()));
+		p.bajarVida((short) new Random().nextInt(this.getAtaque()));
 		if (p.getVida() <= 0) {
-			p.setVida((short)0);
+			p.setVida((short) 0);
 		}
 	}
 }

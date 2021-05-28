@@ -5,42 +5,44 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import clases.Adversario;
-import clases.Personaje;
-import clases.Protagonista;
 import enumeraciones.Enemigos;
-import excepciones.NombreConNumerosException;
-import excepciones.NombreVacioException;
-
 import java.awt.Font;
-import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
-import javax.swing.JTextPane;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import java.awt.GridLayout;
 
+/**
+ * Interfaz de las batallas del juego
+ * 
+ * @author Mamen Arias
+ *
+ */
 public class PantallaBatalla extends JPanel {
 
-	private Ventana ventana;
-	// private Adversario enemigo;
+	private Ventana ventana; // ventana del juego
 
+	/**
+	 * Constructor de la clase PantallaBatalla con todas las características de la
+	 * interfaz
+	 * 
+	 * @param v ventana
+	 */
 	public PantallaBatalla(Ventana v) {
 
 		setForeground(new Color(255, 255, 255));
 		setBackground(new Color(0, 0, 0));
 		this.ventana = v;
 
+		// Label con la información del enemigo que has encontrado
 		JLabel labelInformativo = new JLabel("");
 		labelInformativo.setText("¡Has encontrado a " + ventana.enemigo.getNombre() + "!");
 		labelInformativo.setBounds(0, 0, 799, 71);
@@ -53,6 +55,7 @@ public class PantallaBatalla extends JPanel {
 		labelInformativo.setBorder(new CompoundBorder(bordeLabel, margen));
 		add(labelInformativo);
 
+		// Imagen del enemigo
 		JLabel labelImagenEnemigo = new JLabel("");
 		if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
 			labelImagenEnemigo.setIcon(new ImageIcon(
@@ -67,6 +70,7 @@ public class PantallaBatalla extends JPanel {
 		labelImagenEnemigo.setBounds(197, 113, 421, 370);
 		add(labelImagenEnemigo);
 
+		// Información sobre la vida del protagonista durante la batalla
 		JLabel labelVidaProta = new JLabel("<html><body style='text-align:center'>" + v.protagonista.getNombre()
 				+ ":<br>Vida: " + v.protagonista.getVida() + "</body></html>");
 		labelVidaProta.setHorizontalAlignment(SwingConstants.CENTER);
@@ -76,6 +80,7 @@ public class PantallaBatalla extends JPanel {
 		labelVidaProta.setBounds(10, 113, 171, 43);
 		add(labelVidaProta);
 
+		// Texto durante la batalla con los diferentes eventos que van sucediendo
 		JLabel textoBatalla = new JLabel();
 		textoBatalla.setHorizontalTextPosition(SwingConstants.CENTER);
 		textoBatalla.setHorizontalAlignment(SwingConstants.CENTER);
@@ -87,6 +92,8 @@ public class PantallaBatalla extends JPanel {
 		textoBatalla.setAlignmentY(CENTER_ALIGNMENT);
 		add(textoBatalla);
 
+		// Panel que contiene las 3 opciones para hablar con el enemigo durante la
+		// batalla
 		JPanel panelHablar = new JPanel();
 		panelHablar.setVisible(false);
 		panelHablar.setBackground(new Color(0, 0, 0));
@@ -110,8 +117,11 @@ public class PantallaBatalla extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (ventana.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
 					textoBatalla.setVisible(true);
+					// cuando el enemigo es patito, la primera opción hace que le ataques y pierda
+					// vida
 					ventana.protagonista.ataqueHablando(ventana.enemigo, (short) 100);
-					textoBatalla.setText("<html><body style='text-align:center'>Parece que a " + ventana.enemigo.getNombre()
+					textoBatalla
+							.setText("<html><body style='text-align:center'>Parece que a " + ventana.enemigo.getNombre()
 									+ " le interesa lo que le estás contando. Sigue así...</body></html>");
 					if (ventana.enemigo.getVida() == 0) {
 						ventana.enemigosDerrotados.add(ventana.enemigo.getTipoEnemigo());
@@ -119,12 +129,13 @@ public class PantallaBatalla extends JPanel {
 					}
 				} else if (ventana.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
 					textoBatalla.setVisible(true);
+					// cuando el enemigo es virus, con esta opción te ataca
 					textoBatalla.setText("<html><body style='text-align:center'>A " + ventana.enemigo.getNombre()
 							+ "no le ha sentado bien tu idea y te ataca, ¡ten cuidado!</body></html>");
 					v.enemigo.atacar(v.protagonista);
 					labelVidaProta.setText(
 							"<html><body>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida());
-					if (v.protagonista.getVida() == 0) {	
+					if (v.protagonista.getVida() == 0) {
 						v.irAPantallaGameOver();
 					}
 				}
@@ -160,15 +171,17 @@ public class PantallaBatalla extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
+					// el patito no hace nada
 					textoBatalla.setVisible(true);
 					textoBatalla.setText(
 							"<html><body style='text-align:center'>Pues.. se le ve bastante indiferente, la verdad.</body></html>");
 				} else if (v.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
 					textoBatalla.setVisible(true);
-					textoBatalla.setText(
-							"<html><body style='text-align:center'>"+ventana.enemigo.getNombre() + " se ríe en tu cara...</body></html>");
+					// el virus no hace nada
+					textoBatalla.setText("<html><body style='text-align:center'>" + ventana.enemigo.getNombre()
+							+ " se ríe en tu cara...</body></html>");
 				}
-				
+
 			}
 		});
 		if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
@@ -201,6 +214,7 @@ public class PantallaBatalla extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
 					textoBatalla.setVisible(true);
+					// el patito te ataca
 					textoBatalla.setText("<html><body style='text-align:center'>A " + ventana.enemigo.getNombre()
 							+ "no le ha sentado bien tu idea y te ataca, ¡ten cuidado!</body></html>");
 					v.enemigo.atacar(v.protagonista);
@@ -211,6 +225,7 @@ public class PantallaBatalla extends JPanel {
 					}
 				} else if (v.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
 					textoBatalla.setVisible(true);
+					// le atacas al enemigo escogiendo esta opción
 					ventana.protagonista.ataqueHablando(ventana.enemigo, (short) 150);
 					textoBatalla.setText("<html><body style='text-align:center'>¡ES MUY EFECTIVO!</body></html>");
 					if (ventana.enemigo.getVida() == 0) {
@@ -218,7 +233,7 @@ public class PantallaBatalla extends JPanel {
 						ventana.irAPantallaEscenario1();
 					}
 				}
-				
+
 			}
 		});
 		if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
@@ -234,6 +249,8 @@ public class PantallaBatalla extends JPanel {
 		labelOpcion3.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
 		labelOpcion3.setBounds(1, 71, 744, 28);
 		panelHablar.add(labelOpcion3);
+
+		// opciones a escoger durante la batalla
 		JPanel panelMenuBatalla = new JPanel();
 		panelMenuBatalla.setAlignmentY(CENTER_ALIGNMENT);
 		panelMenuBatalla.setBounds(0, 609, 799, 54);
@@ -244,6 +261,7 @@ public class PantallaBatalla extends JPanel {
 		panelMenuBatalla.setBorder(bordeMenu);
 		add(panelMenuBatalla);
 
+		// botón para atacar al enemigo
 		JButton botonAtacar = new JButton("Atacar");
 		botonAtacar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -287,6 +305,7 @@ public class PantallaBatalla extends JPanel {
 		botonAtacar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panelMenuBatalla.add(botonAtacar);
 
+		// botón para hablar con el enemigo
 		JButton botonHablar = new JButton("Hablar");
 		botonHablar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -315,6 +334,7 @@ public class PantallaBatalla extends JPanel {
 		botonHablar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panelMenuBatalla.add(botonHablar);
 
+		// botón para intentar huir del combate
 		JButton botonHuir = new JButton("Huir");
 		botonHuir.addMouseListener(new MouseAdapter() {
 			@Override
