@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import enumeraciones.Enemigos;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
@@ -32,6 +34,7 @@ public class Ventana extends JFrame{
 	private PantallaFinDemo pantallaFinDemo; // pantalla de final de juego temporal
 	protected Protagonista protagonista; // personaje principal del juego
 	protected Adversario enemigo; // enemigos del juego
+	protected ArrayList<Enemigos> enemigosDerrotados; //Meto los enemigos que ya me he cargado
 	
 	
 	/**
@@ -39,12 +42,12 @@ public class Ventana extends JFrame{
 	 */
 	public Ventana() {
 		this.setSize(800,700);
-		
+		enemigosDerrotados=new ArrayList<Enemigos>();
 		this.setTitle("404");
 		
 		this.setResizable(false);
 		
-		this.setLocation(120,20);
+		this.setLocationRelativeTo(null);
 		
 		BufferedImage icono;
 		try {

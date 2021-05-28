@@ -47,6 +47,7 @@ public class PantallaEscenario1 extends JPanel {
 		panelCentral.setLayout(null);
 
 		JTextPane textoJuego = new JTextPane();
+		textoJuego.setText("Busca el modo de abrir la puerta.");
 		textoJuego.setLocation(0, 600);
 		panelCentral.add(textoJuego);
 		textoJuego.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
@@ -72,23 +73,26 @@ public class PantallaEscenario1 extends JPanel {
 		labelEnemigo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					ventana.enemigo = new Adversario("Donaldo", (short)200, (short)100, Enemigos.PATITO);
-				} catch (NombreVacioException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (NombreConNumerosException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				if (!ventana.enemigosDerrotados.contains(Enemigos.PATITO)) {
+					try {
+						ventana.enemigo = new Adversario("Donaldo", (short) 200, (short) 100, Enemigos.PATITO);
+					} catch (NombreVacioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NombreConNumerosException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					ventana.irAPantallaBatalla();
+				} else {
+						textoJuego.setText("El patito está tranquilo durmiendo...");
 				}
-				ventana.irAPantallaBatalla();
 			}
 		});
-		
+
 		labelEnemigo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelEnemigo.setBounds(100, 350, 45, 45);
 		panelCentral.add(labelEnemigo);
-
 
 		JLabel labelLlave = new JLabel("");
 		labelLlave.addMouseListener(new MouseAdapter() {
@@ -107,8 +111,9 @@ public class PantallaEscenario1 extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (llave) {
-					int opcionSalir = JOptionPane.showConfirmDialog(ventana, "No podrás volver, ¿estás seguro que deseas continuar?",
-							"Aviso", JOptionPane.YES_NO_OPTION);
+					int opcionSalir = JOptionPane.showConfirmDialog(ventana,
+							"No podrás volver, ¿estás seguro que deseas continuar?", "Aviso",
+							JOptionPane.YES_NO_OPTION);
 					if (opcionSalir == JOptionPane.YES_OPTION) {
 						ventana.irAPantallaFinDemo();
 					}
@@ -125,61 +130,59 @@ public class PantallaEscenario1 extends JPanel {
 		labelEnemigo2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					v.enemigo = new Adversario("DSADFS", (short)300, (short)100, Enemigos.VIRUS);
-				} catch (NombreVacioException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (NombreConNumerosException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				if(!ventana.enemigosDerrotados.contains(Enemigos.VIRUS)) {
+					try {
+						v.enemigo = new Adversario("DSADFS", (short) 300, (short) 100, Enemigos.VIRUS);
+					} catch (NombreVacioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NombreConNumerosException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					ventana.irAPantallaBatalla();
+				}else {
+					textoJuego.setText("Ya has derrotado al Virus, tu ordenador está en perfecto estado.");
 				}
-				ventana.irAPantallaBatalla();
 			}
 		});
 		labelEnemigo2.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelEnemigo2.setBounds(231, 178, 118, 106);
 		panelCentral.add(labelEnemigo2);
-		
+
 		JLabel labelPocion1 = new JLabel("");
 		labelPocion1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				/*try {
-					Pocion galleta = new Curativa("Galleta", Pociones.CURATIVA, (byte)30);
-					ArrayList<Pocion >inventario = ventana.protagonista.getInventario();
-					inventario.add(galleta);
-					
-					Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/proyectoprogramacion",
-							"root", "fire_emblem3.");
-					Statement smt = c.createStatement();
-					
-					
-					smt.executeUpdate("insert into pocion values ('" + galleta.getNombre()
-					+ "'," + ventana.protagonista.isGenero() + "," + ventana.protagonista.getVida()
-					+ "," + ventana.protagonista.getAtaque() + "," + ventana.protagonista.getnPantalla()
-					+ ");");
-					
-					smt.close();
-					c.close();
-					
-					
-				} catch (NombreVacioException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (NombreConNumerosException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}*/
+				/*
+				 * try { Pocion galleta = new Curativa("Galleta", Pociones.CURATIVA, (byte)30);
+				 * ArrayList<Pocion >inventario = ventana.protagonista.getInventario();
+				 * inventario.add(galleta);
+				 * 
+				 * Connection c = DriverManager.getConnection(
+				 * "jdbc:mysql://127.0.0.1:3306/proyectoprogramacion", "root", "fire_emblem3.");
+				 * Statement smt = c.createStatement();
+				 * 
+				 * 
+				 * smt.executeUpdate("insert into pocion values ('" + galleta.getNombre() + "',"
+				 * + ventana.protagonista.isGenero() + "," + ventana.protagonista.getVida() +
+				 * "," + ventana.protagonista.getAtaque() + "," +
+				 * ventana.protagonista.getnPantalla() + ");");
+				 * 
+				 * smt.close(); c.close();
+				 * 
+				 * 
+				 * } catch (NombreVacioException e1) { // TODO Auto-generated catch block
+				 * e1.printStackTrace(); } catch (NombreConNumerosException e1) { // TODO
+				 * Auto-generated catch block e1.printStackTrace(); } catch (SQLException e1) {
+				 * // TODO Auto-generated catch block e1.printStackTrace(); }
+				 */
 			}
 		});
 		labelPocion1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelPocion1.setBounds(375, 409, 88, 68);
 		panelCentral.add(labelPocion1);
-		
+
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setBackground(new Color(0, 0, 0));
 		labelFondo.setIcon(new ImageIcon(
@@ -188,10 +191,6 @@ public class PantallaEscenario1 extends JPanel {
 		labelFondo.setBounds(0, 0, 800, 600);
 		// labelFondo.setSize(800, 600);
 		panelCentral.add(labelFondo);
-		
-		
-		
-		
 
 	}
 }

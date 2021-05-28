@@ -114,6 +114,7 @@ public class PantallaBatalla extends JPanel {
 					textoBatalla.setText("<html><body style='text-align:center'>Parece que a " + ventana.enemigo.getNombre()
 									+ " le interesa lo que le estás contando. Sigue así...</body></html>");
 					if (ventana.enemigo.getVida() == 0) {
+						ventana.enemigosDerrotados.add(ventana.enemigo.getTipoEnemigo());
 						ventana.irAPantallaEscenario1();
 					}
 				} else if (ventana.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
@@ -123,7 +124,7 @@ public class PantallaBatalla extends JPanel {
 					v.enemigo.atacar(v.protagonista);
 					labelVidaProta.setText(
 							"<html><body>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida());
-					if (v.protagonista.getVida() == 0) {
+					if (v.protagonista.getVida() == 0) {	
 						v.irAPantallaGameOver();
 					}
 				}
@@ -171,7 +172,7 @@ public class PantallaBatalla extends JPanel {
 			}
 		});
 		if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
-			labelOpcion2.setText("¡¡Qué cosa tan mona!");
+			labelOpcion2.setText("¡Qué cosa tan mona!");
 		} else if (v.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
 			labelOpcion2.setText("¡Aaah, atrás, bichooo!");
 		}
@@ -213,6 +214,7 @@ public class PantallaBatalla extends JPanel {
 					ventana.protagonista.ataqueHablando(ventana.enemigo, (short) 150);
 					textoBatalla.setText("<html><body style='text-align:center'>¡ES MUY EFECTIVO!</body></html>");
 					if (ventana.enemigo.getVida() == 0) {
+						ventana.enemigosDerrotados.add(ventana.enemigo.getTipoEnemigo());
 						ventana.irAPantallaEscenario1();
 					}
 				}
@@ -265,6 +267,7 @@ public class PantallaBatalla extends JPanel {
 						+ ventana.enemigo.getNombre() + "!<br>  Ahora su vida es de: " + v.enemigo.getVida()
 						+ "<br><br>" + ventana.enemigo.getNombre() + " te ha atacado...</body></html>");
 				if (ventana.enemigo.getVida() == 0) {
+					ventana.enemigosDerrotados.add(ventana.enemigo.getTipoEnemigo());
 					ventana.irAPantallaEscenario1();
 				}
 				v.enemigo.atacar(v.protagonista);
