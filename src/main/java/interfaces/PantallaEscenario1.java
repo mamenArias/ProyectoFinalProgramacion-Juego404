@@ -50,7 +50,8 @@ public class PantallaEscenario1 extends JPanel {
 
 		// texto del juego que irá cambiando según las interacciones que vayan pasando.
 		JTextPane textoJuego = new JTextPane();
-		textoJuego.setText("Busca el modo de abrir la puerta.");
+		textoJuego.setEditable(false);
+		textoJuego.setText("\r\nInvestiga por la habitación para encontrar la llave que abre la puerta.");
 		textoJuego.setLocation(0, 600);
 		panelCentral.add(textoJuego);
 		textoJuego.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
@@ -64,7 +65,7 @@ public class PantallaEscenario1 extends JPanel {
 		labelSilla.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textoJuego.setText("No es momento de ponerse a trabajar, busca la forma de salir de aquí.");
+				textoJuego.setText("\r\nNo es momento de ponerse a trabajar, busca la forma de salir de aquí.");
 			}
 		});
 		// labelSIlla.setOpaque(false);
@@ -80,7 +81,10 @@ public class PantallaEscenario1 extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (!ventana.enemigosDerrotados.contains(Enemigos.PATITO)) {
 					try {
-						ventana.enemigo = new Adversario("Donaldo", (short) 200, (short) 100, Enemigos.PATITO);
+						ventana.enemigo = new Adversario("Donaldo", (short) 200, (short) 100, Enemigos.PATITO,
+								"Parece que a Donaldo le interesa lo que le estás contando. Sigue así...",
+								"Pues.. se le ve bastante indiferente, la verdad.",
+								"A Donaldo no le ha sentado bien tu idea y te ataca, ¡ten cuidado!");
 					} catch (NombreVacioException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -90,7 +94,7 @@ public class PantallaEscenario1 extends JPanel {
 					}
 					ventana.irAPantallaBatalla();
 				} else {
-					textoJuego.setText("El patito está tranquilo durmiendo...");
+					textoJuego.setText("\r\nDonaldo está tranquilo durmiendo...");
 				}
 			}
 		});
@@ -104,7 +108,7 @@ public class PantallaEscenario1 extends JPanel {
 		labelLlave.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textoJuego.setText("¡Has encontrado la llave! Prueba a salir de la habitación.");
+				textoJuego.setText("\r\n¡Has encontrado la llave! Prueba a salir de la habitación.");
 				llave = true;
 			}
 		});
@@ -123,10 +127,10 @@ public class PantallaEscenario1 extends JPanel {
 							"No podrás volver, ¿estás seguro que deseas continuar?", "Aviso",
 							JOptionPane.YES_NO_OPTION);
 					if (opcionSalir == JOptionPane.YES_OPTION) {
-						ventana.irAPantallaFinDemo();
+						ventana.irAPantallaEscenario2();
 					}
 				} else {
-					textoJuego.setText("Puerta Cerrada");
+					textoJuego.setText("\r\nPuerta Cerrada");
 				}
 			}
 		});
@@ -141,7 +145,9 @@ public class PantallaEscenario1 extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (!ventana.enemigosDerrotados.contains(Enemigos.VIRUS)) {
 					try {
-						ventana.enemigo = new Adversario("DSADFS", (short) 300, (short) 100, Enemigos.VIRUS);
+						ventana.enemigo = new Adversario("WannaCry", (short) 300, (short) 100, Enemigos.VIRUS,
+								"¡ES MUY EFECTIVO!", "WannaCry se ríe en tu cara...",
+								"WannaCry parece contento... pero quiere más y te ataca para conseguirlo.");
 					} catch (NombreVacioException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -151,7 +157,7 @@ public class PantallaEscenario1 extends JPanel {
 					}
 					ventana.irAPantallaBatalla();
 				} else {
-					textoJuego.setText("Ya has derrotado al Virus, tu ordenador está en perfecto estado.");
+					textoJuego.setText("\r\nYa has derrotado a WannaCry, tu ordenador está en perfecto estado.");
 				}
 			}
 		});
@@ -172,10 +178,14 @@ public class PantallaEscenario1 extends JPanel {
 								"Has encontrado una " + ventana.pocion.getNombre() + ", ¿quieres tomártela?",
 								"Poción encontrada", JOptionPane.YES_NO_OPTION);
 						if (opcionPocion == JOptionPane.YES_OPTION) {
-							ventana.protagonista.usoDePociones(ventana.pocion, (short) 100, ventana.enemigo);
-							textoJuego.setText(
-									"Has recuperado 100 de vida, ahora tienes: " + ventana.protagonista.getVida());
-							ventana.pocionesTomadas.add(ventana.pocion.getTipoPocion());
+							if(ventana.protagonista.getVida() == 500) {
+								textoJuego.setText("\r\nYa tienes la vida al máximo, será mejor que la deje ahí por si acaso...");
+							}else {
+								ventana.protagonista.usoDePociones(ventana.pocion, (short) 100, ventana.enemigo);
+								textoJuego.setText(
+										"\r\nHas recuperado 100 de vida, ahora tienes: " + ventana.protagonista.getVida());
+								ventana.pocionesTomadas.add(ventana.pocion.getTipoPocion());
+							}
 						}
 					} catch (NombreVacioException e1) {
 						// TODO Auto-generated catch block
@@ -185,7 +195,7 @@ public class PantallaEscenario1 extends JPanel {
 						e1.printStackTrace();
 					}
 				} else {
-					textoJuego.setText("Ya te has tomado la poción, será mejor que busques otra.");
+					textoJuego.setText("\r\nYa te has tomado la poción, será mejor que busques otra.");
 				}
 			}
 		});
@@ -197,7 +207,7 @@ public class PantallaEscenario1 extends JPanel {
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setBackground(new Color(0, 0, 0));
 		labelFondo.setIcon(new ImageIcon(
-				"F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\habitacion2.jpg"));
+				"imagenes/habitacion2.jpg"));
 		labelFondo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelFondo.setBounds(0, 0, 800, 600);
 		panelCentral.add(labelFondo);

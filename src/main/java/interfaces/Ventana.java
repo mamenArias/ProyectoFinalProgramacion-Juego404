@@ -30,8 +30,7 @@ public class Ventana extends JFrame {
 	private PantallaInicio pantallaInicio; // Pantalla Inicial del juego
 	private PantallaNuevoPersonaje pantallaNuevoPersonaje; // Pantalla de registro del nuevo personaje
 	private PantallaCargarPersonaje pantallaCargarPersonaje; // Pantalla de carga de personajes guardados.
-	private PantallaDescripcionInicial pantallaDescripcion; // Pantalla inicial con la descripción de la historia del
-															// juego
+	private PantallaDescripcionInicial pantallaDescripcion; // Pantalla inicial con la descripción de la historia del juego
 	private PantallaEscenario1 pantallaEscenario1; // primer escenario del juego
 	private PantallaEscenario2 pantallaEscenario2; // segundo escenario del juego
 	private PantallaBatalla pantallaBatalla; // pantalla de batalla

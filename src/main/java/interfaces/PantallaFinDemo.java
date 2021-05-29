@@ -37,9 +37,10 @@ public class PantallaFinDemo extends JPanel {
 		labelTexto.setHorizontalAlignment(SwingConstants.CENTER);
 		labelTexto.setBounds(96, 56, 592, 121);
 		add(labelTexto);
-
+		
 		// botón para salir del juego
 		JLabel labelSalir = new JLabel("Salir del juego");
+		labelSalir.setHorizontalAlignment(SwingConstants.RIGHT);
 		labelSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -65,10 +66,12 @@ public class PantallaFinDemo extends JPanel {
 		// imagen de fondo
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setIcon(new ImageIcon(
-				"F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\finDemo.jpg"));
+				"imagenes/finDemo.jpg"));
 		labelFondo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelFondo.setBounds(0, 0, 800, 700);
 		add(labelFondo);
+		
+		
 
 	}
 }

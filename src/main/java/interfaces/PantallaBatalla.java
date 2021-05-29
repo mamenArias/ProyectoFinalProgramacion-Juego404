@@ -59,10 +59,10 @@ public class PantallaBatalla extends JPanel {
 		JLabel labelImagenEnemigo = new JLabel("");
 		if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
 			labelImagenEnemigo.setIcon(new ImageIcon(
-					"F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\patito.png"));
+					"imagenes/patito.png"));
 		} else if (v.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
 			labelImagenEnemigo.setIcon(new ImageIcon(
-					"F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\virus.png"));
+					"imagenes/virus.png"));
 		}
 		Border bordeEnemigo = BorderFactory.createLineBorder(new Color(255, 255, 255));
 		labelImagenEnemigo.setBorder(bordeEnemigo);
@@ -121,8 +121,7 @@ public class PantallaBatalla extends JPanel {
 					// vida
 					ventana.protagonista.ataqueHablando(ventana.enemigo, (short) 100);
 					textoBatalla
-							.setText("<html><body style='text-align:center'>Parece que a " + ventana.enemigo.getNombre()
-									+ " le interesa lo que le estás contando. Sigue así...</body></html>");
+							.setText("<html><body style='text-align:center'>" + ventana.enemigo.getRespuestaAmistosa() + "</body></html>");
 					if (ventana.enemigo.getVida() == 0) {
 						ventana.enemigosDerrotados.add(ventana.enemigo.getTipoEnemigo());
 						ventana.irAPantallaEscenario1();
@@ -130,11 +129,10 @@ public class PantallaBatalla extends JPanel {
 				} else if (ventana.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
 					textoBatalla.setVisible(true);
 					// cuando el enemigo es virus, con esta opción te ataca
-					textoBatalla.setText("<html><body style='text-align:center'>A " + ventana.enemigo.getNombre()
-							+ "no le ha sentado bien tu idea y te ataca, ¡ten cuidado!</body></html>");
+					textoBatalla.setText("<html><body style='text-align:center'>" + ventana.enemigo.getRespuestaAgresiva() + "</body></html>");
 					v.enemigo.atacar(v.protagonista);
 					labelVidaProta.setText(
-							"<html><body>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida());
+							"<html><body style='text-align:center'>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida() + "</body></html>");
 					if (v.protagonista.getVida() == 0) {
 						v.irAPantallaGameOver();
 					}
@@ -145,7 +143,7 @@ public class PantallaBatalla extends JPanel {
 		if (ventana.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
 			labelOpcion1.setText("Bueno pues... *le cuentas el código de tu proyecto*");
 		} else if (ventana.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
-			labelOpcion1.setText("Pues tampoco eres para tanto...");
+			labelOpcion1.setText("*Le das dinero para que se vaya...*");
 		}
 		labelOpcion1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelOpcion1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,12 +172,11 @@ public class PantallaBatalla extends JPanel {
 					// el patito no hace nada
 					textoBatalla.setVisible(true);
 					textoBatalla.setText(
-							"<html><body style='text-align:center'>Pues.. se le ve bastante indiferente, la verdad.</body></html>");
+							"<html><body style='text-align:center'>" + ventana.enemigo.getRespuestaNeutral() + "</body></html>");
 				} else if (v.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
 					textoBatalla.setVisible(true);
 					// el virus no hace nada
-					textoBatalla.setText("<html><body style='text-align:center'>" + ventana.enemigo.getNombre()
-							+ " se ríe en tu cara...</body></html>");
+					textoBatalla.setText("<html><body style='text-align:center'>" + ventana.enemigo.getRespuestaNeutral() + "</body></html>");
 				}
 
 			}
@@ -215,11 +212,10 @@ public class PantallaBatalla extends JPanel {
 				if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
 					textoBatalla.setVisible(true);
 					// el patito te ataca
-					textoBatalla.setText("<html><body style='text-align:center'>A " + ventana.enemigo.getNombre()
-							+ "no le ha sentado bien tu idea y te ataca, ¡ten cuidado!</body></html>");
+					textoBatalla.setText("<html><body style='text-align:center'>" + ventana.enemigo.getRespuestaAgresiva() + "</body></html>");
 					v.enemigo.atacar(v.protagonista);
 					labelVidaProta.setText(
-							"<html><body>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida());
+							"<html><body style='text-align:center'>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida() + "</body></html>");
 					if (v.protagonista.getVida() == 0) {
 						v.irAPantallaGameOver();
 					}
@@ -227,7 +223,7 @@ public class PantallaBatalla extends JPanel {
 					textoBatalla.setVisible(true);
 					// le atacas al enemigo escogiendo esta opción
 					ventana.protagonista.ataqueHablando(ventana.enemigo, (short) 150);
-					textoBatalla.setText("<html><body style='text-align:center'>¡ES MUY EFECTIVO!</body></html>");
+					textoBatalla.setText("<html><body style='text-align:center'>" + ventana.enemigo.getRespuestaAmistosa() + "</body></html>");
 					if (ventana.enemigo.getVida() == 0) {
 						ventana.enemigosDerrotados.add(ventana.enemigo.getTipoEnemigo());
 						ventana.irAPantallaEscenario1();
@@ -290,7 +286,7 @@ public class PantallaBatalla extends JPanel {
 				}
 				v.enemigo.atacar(v.protagonista);
 				labelVidaProta.setText(
-						"<html><body>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida());
+						"<html><body style='text-align:center'>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida() + "</body></html>");
 				if (v.protagonista.getVida() == 0) {
 					v.irAPantallaGameOver();
 				}
