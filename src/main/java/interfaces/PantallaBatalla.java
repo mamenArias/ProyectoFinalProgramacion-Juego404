@@ -57,12 +57,16 @@ public class PantallaBatalla extends JPanel {
 
 		// Imagen del enemigo
 		JLabel labelImagenEnemigo = new JLabel("");
-		if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
+		labelImagenEnemigo.setHorizontalAlignment(SwingConstants.CENTER);
+		if (ventana.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
 			labelImagenEnemigo.setIcon(new ImageIcon(
 					"imagenes/patito.png"));
-		} else if (v.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
+		} else if (ventana.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
 			labelImagenEnemigo.setIcon(new ImageIcon(
 					"imagenes/virus.png"));
+		} else if (ventana.enemigo.getTipoEnemigo() == Enemigos.BUG) {
+			labelImagenEnemigo.setIcon(new ImageIcon(
+					"imagenes/bug.png"));
 		}
 		Border bordeEnemigo = BorderFactory.createLineBorder(new Color(255, 255, 255));
 		labelImagenEnemigo.setBorder(bordeEnemigo);
@@ -72,7 +76,7 @@ public class PantallaBatalla extends JPanel {
 
 		// Información sobre la vida del protagonista durante la batalla
 		JLabel labelVidaProta = new JLabel("<html><body style='text-align:center'>" + v.protagonista.getNombre()
-				+ ":<br>Vida: " + v.protagonista.getVida() + "</body></html>");
+				+ ":<br>Vida: " + ventana.protagonista.getVida() + "</body></html>");
 		labelVidaProta.setHorizontalAlignment(SwingConstants.CENTER);
 		labelVidaProta.setFont(new Font("MS UI Gothic", Font.BOLD, 20));
 		labelVidaProta.setForeground(new Color(255, 153, 255));
@@ -274,7 +278,7 @@ public class PantallaBatalla extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				panelHablar.setVisible(false);
 				textoBatalla.setVisible(true);
-				v.protagonista.atacar(v.enemigo);
+				ventana.protagonista.atacar(ventana.enemigo);
 				// JOptionPane.showMessageDialog(ventana, "¿Cómo te atreves a pegarle al pobre
 				// Patito?");
 				textoBatalla.setText("<html><body style='text-align:center'>  \u00A1Has atacado a "
@@ -284,11 +288,11 @@ public class PantallaBatalla extends JPanel {
 					ventana.enemigosDerrotados.add(ventana.enemigo.getTipoEnemigo());
 					ventana.irAPantallaEscenario1();
 				}
-				v.enemigo.atacar(v.protagonista);
+				ventana.enemigo.atacar(v.protagonista);
 				labelVidaProta.setText(
-						"<html><body style='text-align:center'>" + v.protagonista.getNombre() + ":<br>Vida: " + v.protagonista.getVida() + "</body></html>");
-				if (v.protagonista.getVida() == 0) {
-					v.irAPantallaGameOver();
+						"<html><body style='text-align:center'>" + ventana.protagonista.getNombre() + ":<br>Vida: " + ventana.protagonista.getVida() + "</body></html>");
+				if (ventana.protagonista.getVida() == 0) {
+					ventana.irAPantallaGameOver();
 				}
 			}
 		});
@@ -347,18 +351,21 @@ public class PantallaBatalla extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				// v.protagonista.huir(enemigo);
 				Random r = new Random();
-				if (r.nextInt(100) > 80) {
-					if (v.enemigo.getTipoEnemigo() == Enemigos.PATITO) {
-						v.irAPantallaEscenario1();
+				if (r.nextInt(100) > 70) {
+					if (ventana.enemigo.getTipoEnemigo() == Enemigos.PATITO || ventana.enemigo.getTipoEnemigo() == Enemigos.VIRUS) {
+						ventana.irAPantallaEscenario1();
+					} else if (ventana.enemigo.getTipoEnemigo() == Enemigos.BUG) {
+						ventana.irAPantallaEscenario2();
 					}
 				} else {
 					textoBatalla.setText("No has podido huir.");
 					// JOptionPane.showMessageDialog(v, "No puedes escapar", "Aviso",
 					// JOptionPane.INFORMATION_MESSAGE);
-					v.enemigo.atacar(v.protagonista);
-					labelVidaProta.setText("Vida: " + v.protagonista.getVida());
-					if (v.protagonista.getVida() == 0) {
-						v.irAPantallaGameOver();
+					ventana.enemigo.atacar(ventana.protagonista);
+					labelVidaProta.setText("<html><body style='text-align:center'>" + ventana.protagonista.getNombre() 
+					+ ":<br>Vida: " + ventana.protagonista.getVida() + "</body></html>");
+					if (ventana.protagonista.getVida() == 0) {
+						ventana.irAPantallaGameOver();
 					}
 				}
 			}

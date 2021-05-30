@@ -73,8 +73,7 @@ public class PantallaEscenario1 extends JPanel {
 		labelSilla.setSize(80, 150);
 		panelCentral.add(labelSilla);
 
-		// label que genera al enemigo patito cuando comprueba que no lo hemos derrotado
-		// aún
+		// label que genera al enemigo patito cuando comprueba que no lo hemos derrotado aún
 		JLabel labelEnemigo = new JLabel("");
 		labelEnemigo.addMouseListener(new MouseAdapter() {
 			@Override
@@ -202,7 +201,7 @@ public class PantallaEscenario1 extends JPanel {
 		labelPocion1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelPocion1.setBounds(375, 409, 88, 68);
 		panelCentral.add(labelPocion1);
-
+		
 		// imagen de fondo
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setBackground(new Color(0, 0, 0));
@@ -211,6 +210,8 @@ public class PantallaEscenario1 extends JPanel {
 		labelFondo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelFondo.setBounds(0, 0, 800, 600);
 		panelCentral.add(labelFondo);
+		
+		
 
 	}
 }
