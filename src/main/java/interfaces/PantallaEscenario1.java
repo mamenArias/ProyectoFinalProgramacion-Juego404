@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 
 import clases.Adversario;
 import clases.Curativa;
+import clases.Defensiva;
 import enumeraciones.Enemigos;
 import enumeraciones.Pociones;
 import excepciones.NombreConNumerosException;
@@ -170,21 +171,17 @@ public class PantallaEscenario1 extends JPanel {
 		labelPocion1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (!ventana.pocionesTomadas.contains(Pociones.CURATIVA)) {
+				if (!ventana.pocionesTomadas.contains(Pociones.DEFENSIVA)) {
 					try {
-						ventana.pocion = new Curativa("Cookie", Pociones.CURATIVA, (short) 100);
+						ventana.pocion = new Defensiva("Plátano", Pociones.DEFENSIVA, (short) 60);
 						int opcionPocion = JOptionPane.showConfirmDialog(ventana,
-								"Has encontrado una " + ventana.pocion.getNombre() + ", ¿quieres tomártela?",
+								"Has encontrado un " + ventana.pocion.getNombre() + " en el suelo, ¿quieres tomártelo?",
 								"Poción encontrada", JOptionPane.YES_NO_OPTION);
 						if (opcionPocion == JOptionPane.YES_OPTION) {
-							if(ventana.protagonista.getVida() == 500) {
-								textoJuego.setText("\r\nYa tienes la vida al máximo, será mejor que la deje ahí por si acaso...");
-							}else {
-								ventana.protagonista.usoDePociones(ventana.pocion, (short) 100, ventana.enemigo);
-								textoJuego.setText(
-										"\r\nHas recuperado 100 de vida, ahora tienes: " + ventana.protagonista.getVida());
-								ventana.pocionesTomadas.add(ventana.pocion.getTipoPocion());
-							}
+							ventana.protagonista.setReductorDaño((byte) 60);
+							ventana.protagonista.usoDePociones(ventana.pocion, (short) 60, ventana.enemigo);
+							textoJuego.setText("\r\n Parece que tu defensa ha mejorado, ahora será más fácil derrotar a los enemigos.");
+							ventana.pocionesTomadas.add(ventana.pocion.getTipoPocion());	
 						}
 					} catch (NombreVacioException e1) {
 						// TODO Auto-generated catch block
@@ -194,7 +191,7 @@ public class PantallaEscenario1 extends JPanel {
 						e1.printStackTrace();
 					}
 				} else {
-					textoJuego.setText("\r\nYa te has tomado la poción, será mejor que busques otra.");
+					textoJuego.setText("\r\n Ya te has tomado la poción, será mejor que busques otra.");
 				}
 			}
 		});

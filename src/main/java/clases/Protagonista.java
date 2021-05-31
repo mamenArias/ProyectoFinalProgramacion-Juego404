@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 import enumeraciones.Enemigos;
+import enumeraciones.Pociones;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
 import interfaces.Ventana;
@@ -20,6 +21,7 @@ public class Protagonista extends Personaje {
 	private boolean genero; // genero del protagonista
 	private byte nPantalla; // nº de pantalla en el que se ha quedado el protagonista
 	private Ventana ventana; // ventana del juego
+	private byte reductorDaño; // al tomar la poción de defensa, el ataque del enemigo se reducirá esta cantidad
 
 	/**
 	 * Constructor de la clase Protagonista
@@ -97,6 +99,23 @@ public class Protagonista extends Personaje {
 		this.genero = genero;
 	}
 
+	
+	/**
+	 * obtiene la reducción de daño al usar la poción defensiva
+	 * @return reducción de daño
+	 */
+	public byte getReductorDaño() {
+		return reductorDaño;
+	}
+
+	/**
+	 * establece una nueva reducción de daño
+	 * @param reductorDaño nuevo
+	 */
+	public void setReductorDaño(byte reductorDaño) {
+		this.reductorDaño = reductorDaño;
+	}
+
 	/**
 	 * Función para que el protagonista pueda huir de la batalla. Si lo consigue, se
 	 * vuelve a la pantalla en la que se encontraba. Si no lo consigue, recibe un
@@ -124,6 +143,7 @@ public class Protagonista extends Personaje {
 	 */
 	public void atacar(Adversario a) {
 		a.bajarVida((short) new Random().nextInt(this.getAtaque()));
+		//a.bajarVida(this.getAtaque());
 		if (a.getVida() <= 0) {
 			a.setVida((short) 0);
 			JOptionPane.showMessageDialog(ventana, "Has vencido", "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
@@ -146,13 +166,27 @@ public class Protagonista extends Personaje {
 		}
 	}
 
+	
 	/**
-	 * Función sobre el uso de pociones del personaje, cuando se encuentra una.
+	 * Función para el uso de pociones por parte del personaje
+	 * @param p poción
+	 * @param habilidadPocion cantidad de efecto de la poción
+	 * @param a enemigo sobre el que aplicar la poción
 	 */
-	@Override
 	public void usoDePociones(Pocion p, short habilidadPocion, Adversario a) {
-		// TODO Auto-generated method stub
-		super.usoDePociones(p, habilidadPocion, a);
+		if (p.getTipoPocion() == Pociones.CURATIVA) {
+			super.setVida(((short) (super.getVida() + habilidadPocion)));
+			if (super.getVida() > 500) {
+				super.setVida((short)500);;
+			}
+		} else if (p.getTipoPocion() == Pociones.DEATAQUE) {
+			super.setAtaque((short) (super.getAtaque() + habilidadPocion));
+		} else if (p.getTipoPocion() == Pociones.DEFENSIVA) {
+			a.setAtaque((short) (a.getAtaque() - this.getReductorDaño()));
+			if (a.getAtaque() < 0) {
+				a.setAtaque((short) 0);
+			}
+		}
 	}
 
 }

@@ -83,7 +83,7 @@ public class Personaje extends ElementoJuego {
 	 * @param habilidadPocion efecto de la poción sobre el personaje
 	 * @param a               enemigo sobre el que recae el efecto de la poción
 	 */
-	public void usoDePociones(Pocion p, short habilidadPocion, Adversario a) {
+	/*public void usoDePociones(Pocion p, short habilidadPocion, Adversario a) {
 		if (p.getTipoPocion() == Pociones.CURATIVA) {
 			this.vida = (short) (vida + habilidadPocion);
 			if (this.vida > 500) {
@@ -97,6 +97,6 @@ public class Personaje extends ElementoJuego {
 				a.setAtaque((short) 0);
 			}
 		}
-	}
+	}*/
 
 }

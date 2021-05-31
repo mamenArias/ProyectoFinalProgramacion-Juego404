@@ -72,7 +72,7 @@ public class PantallaEscenario2 extends JPanel {
 		panelCentral.setLayout(null);
 		
 		JTextPane textoJuego = new JTextPane();
-		textoJuego.setText("\r\nParece que vas a tener que buscar otra llave para salir de aqu\u00ED, otra vez...");
+		textoJuego.setText("\r\n Parece que vas a tener que buscar otra llave para salir de aqu\u00ED, otra vez...");
 		textoJuego.setFont(new Font("MS UI Gothic", Font.PLAIN, 18));
 		textoJuego.setEditable(false);
 		textoJuego.setForeground(new Color(255, 255, 255));
@@ -92,7 +92,7 @@ public class PantallaEscenario2 extends JPanel {
 						ventana.irAPantallaFinDemo();
 					}
 				} else {
-					textoJuego.setText("\r\nPuerta Cerrada");
+					textoJuego.setText("\r\n Puerta Cerrada");
 				}
 			}
 		});
@@ -114,7 +114,7 @@ public class PantallaEscenario2 extends JPanel {
 						if (opcionPocion == JOptionPane.YES_OPTION) {
 								ventana.protagonista.usoDePociones(ventana.pocion, (short) 50, ventana.enemigo);
 								textoJuego.setText(
-										"\r\nPerfecto, te vendrá bien para la batalla.");
+										"\r\n Perfecto, te vendrá bien para la batalla.");
 								ventana.pocionesTomadas.add(ventana.pocion.getTipoPocion());
 						}
 					} catch (NombreVacioException e1) {
@@ -125,7 +125,7 @@ public class PantallaEscenario2 extends JPanel {
 						e1.printStackTrace();
 					}
 				} else {
-					textoJuego.setText("\r\nYa te has tomado la poción, será mejor que busques otra.");
+					textoJuego.setText("\r\n Ya te has tomado la poción, será mejor que busques otra.");
 				}
 			}
 		});
@@ -139,9 +139,9 @@ public class PantallaEscenario2 extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (!ventana.enemigosDerrotados.contains(Enemigos.BUG)) {
 					try {
-						ventana.enemigo = new Adversario("Glitchy", (short) 300, (short) 100, Enemigos.BUG,
-								"¡ES MUY EFECTIVO!", "WannaCry se ríe en tu cara...",
-								"WannaCry parece contento... pero quiere más y te ataca para conseguirlo.");
+						ventana.enemigo = new Adversario("Glitchy", (short) 350, (short) 100, Enemigos.BUG,
+								"........... :)", "N... id..a",
+								"ERR...RR E.....RR.. EEE...RRR....O....RRRR");
 					} catch (NombreVacioException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -151,7 +151,7 @@ public class PantallaEscenario2 extends JPanel {
 					}
 					ventana.irAPantallaBatalla();
 				} else {
-					textoJuego.setText("\r\nYa has derrotado a Glitchy, tu ordenador está en perfecto estado.");
+					textoJuego.setText("\r\n Ya has derrotado a Glitchy, tu ordenador está en perfecto estado.");
 				}
 			}
 		});
@@ -159,6 +159,77 @@ public class PantallaEscenario2 extends JPanel {
 		labelEnemigo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelEnemigo.setBounds(217, 170, 78, 97);
 		panelCentral.add(labelEnemigo);
+		
+		JLabel labelCafe = new JLabel("");
+		labelCafe.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textoJuego.setText("\r\n Deberías dejar de tomar café, no creo que te ayude ahora mismo.");
+			}
+		});
+		labelCafe.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		labelCafe.setBounds(0, 424, 55, 70);
+		panelCentral.add(labelCafe);
+		
+		JLabel labelGalleta = new JLabel("");
+		labelGalleta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (!ventana.pocionesTomadas.contains(Pociones.CURATIVA)) {
+					try {
+						ventana.pocion = new Curativa("Cookie", Pociones.CURATIVA, (short) 200);
+						int opcionPocion = JOptionPane.showConfirmDialog(ventana,
+								"Has encontrado una " + ventana.pocion.getNombre() + ", ¿quieres tomártela?",
+								"Poción encontrada", JOptionPane.YES_NO_OPTION);
+						if (opcionPocion == JOptionPane.YES_OPTION) {
+							if(ventana.protagonista.getVida() == 500) {
+								textoJuego.setText("\r\nYa tienes la vida al máximo, será mejor que la deje ahí por si acaso...");
+							}else {
+								ventana.protagonista.usoDePociones(ventana.pocion, (short) 200, ventana.enemigo);
+								textoJuego.setText(
+										"\r\nHas recuperado 100 de vida, ahora tienes: " + ventana.protagonista.getVida());
+								ventana.pocionesTomadas.add(ventana.pocion.getTipoPocion());
+							}
+						}
+					} catch (NombreVacioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NombreConNumerosException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} else {
+					textoJuego.setText("\r\nYa te has tomado la poción, será mejor que busques otra.");
+				}
+			}
+		});
+		labelGalleta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		labelGalleta.setBounds(582, 441, 87, 70);
+		panelCentral.add(labelGalleta);
+		
+		JLabel labelJefe = new JLabel("");
+		labelJefe.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (!ventana.enemigosDerrotados.contains(Enemigos.USUARIO)) {
+					try {
+						ventana.enemigo = new Adversario("Johny Melavo", (short) 500, (short) 100, Enemigos.USUARIO);
+					} catch (NombreVacioException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (NombreConNumerosException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					ventana.irAPantallaBatalla();
+				} else {
+					textoJuego.setText("\r\n Parece que Johny Melavo se ha ido...");
+				}
+			}
+		});
+		labelJefe.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		labelJefe.setBounds(554, 162, 64, 176);
+		panelCentral.add(labelJefe);
 		
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setIcon(new ImageIcon("F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\salon.jpg"));
