@@ -156,10 +156,8 @@ public class PantallaCargarPersonaje extends JPanel {
 								v.irAPantallaEscenario2();
 							}
 						} catch (NombreVacioException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						} catch (NombreConNumerosException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 
@@ -171,7 +169,6 @@ public class PantallaCargarPersonaje extends JPanel {
 					smt.close();
 					c.close();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 

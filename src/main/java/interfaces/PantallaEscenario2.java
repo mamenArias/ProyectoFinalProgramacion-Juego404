@@ -35,7 +35,6 @@ import java.awt.Font;
 public class PantallaEscenario2 extends JPanel {
 
 	private Ventana ventana; // ventana
-	private boolean llave; // llave para avanzar de escenario
 
 	/**
 	 * Constructor de la clase PantallaEscenario2 con todas las características de
@@ -45,6 +44,7 @@ public class PantallaEscenario2 extends JPanel {
 	 */
 	public PantallaEscenario2(Ventana v) {
 		this.ventana = v;
+		ventana.segundaLlave = false;
 		setLayout(new BorderLayout(0, 0));
 		
 		// lo primero que hacemos al pasar a esta pantalla, es hacer un guardado del
@@ -84,7 +84,7 @@ public class PantallaEscenario2 extends JPanel {
 		labelPuerta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (llave) {
+				if (ventana.segundaLlave) {
 					int opcionSalir = JOptionPane.showConfirmDialog(ventana,
 							"No podrás volver, ¿estás seguro que deseas continuar?", "Aviso",
 							JOptionPane.YES_NO_OPTION);
@@ -149,6 +149,7 @@ public class PantallaEscenario2 extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					textoJuego.setText("");
 					ventana.irAPantallaBatalla();
 				} else {
 					textoJuego.setText("\r\n Ya has derrotado a Glitchy, tu ordenador está en perfecto estado.");
@@ -221,6 +222,7 @@ public class PantallaEscenario2 extends JPanel {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					textoJuego.setText("");
 					ventana.irAPantallaBatalla();
 				} else {
 					textoJuego.setText("\r\n Parece que Johny Melavo se ha ido...");

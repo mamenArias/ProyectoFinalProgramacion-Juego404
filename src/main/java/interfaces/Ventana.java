@@ -39,6 +39,7 @@ public class Ventana extends JFrame {
 	protected Protagonista protagonista; // personaje principal del juego
 	protected Adversario enemigo; // enemigos del juego
 	protected Pocion pocion; // pociones del juego
+	protected boolean segundaLlave; // llave del segundo escenario que se obtiene al vencer a un enemigo concreto
 	protected ArrayList<Enemigos> enemigosDerrotados; // Meto los enemigos que ya me he cargado
 	protected ArrayList<Pociones> pocionesTomadas; // meto las pociones que ya me haya tomado
 	protected ArrayList<String> personajesRegistrados; // se van a almacenar todos los personajes que se hayan
@@ -220,6 +221,10 @@ public class Ventana extends JFrame {
 		if (this.pantallaEscenario1 != null) {
 			this.pantallaEscenario1.setVisible(false);
 		}
+		
+		if (this.pantallaBatalla != null) {
+			this.pantallaBatalla.setVisible(false);
+		}
 
 		this.setContentPane(pantallaEscenario2);
 		this.pantallaEscenario2.setVisible(true);
@@ -250,8 +255,8 @@ public class Ventana extends JFrame {
 			this.pantallaFinDemo = new PantallaFinDemo(this);
 		}
 
-		if (this.pantallaEscenario1 != null) {
-			this.pantallaEscenario1.setVisible(false);
+		if (this.pantallaEscenario2 != null) {
+			this.pantallaEscenario2.setVisible(false);
 		}
 
 		this.setContentPane(pantallaFinDemo);

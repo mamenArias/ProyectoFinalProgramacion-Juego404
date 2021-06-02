@@ -140,24 +140,25 @@ public class Adversario extends Personaje {
 	 * @param p protagonista
 	 */
 	public void atacar(Protagonista p) {
-		//p.bajarVida((short) new Random().nextInt(this.getAtaque()));
-		p.bajarVida((short) 100);
+		p.bajarVida((short) new Random().nextInt(this.getAtaque()));
+		//p.bajarVida((short) 100);
 		if (p.getVida() <= 0) {
 			p.setVida((short) 0);
 		}
 	}
 	
 	public void atacarConPocion (Protagonista p) {
-		p.bajarVida((short) (100 - p.getReductorDaño()));
+		p.bajarVida((short) (this.getAtaque() - p.getReductorDaño()));
+		//p.bajarVida((short) (100 - p.getReductorDaño()));
 		if (p.getVida() <= 0) {
 			p.setVida((short) 0);
 		}
 	}
 	
-	public void usoDePocionProta (Pocion p, short habilidadPocion) {
+	/*public void usoDePocionProta (Pocion p, short habilidadPocion) {
 		this.setAtaque((short) (this.getAtaque() - habilidadPocion));
 		if (this.getAtaque() < 0) {
 			this.setAtaque((short)0);
 		}
-	}
+	}*/
 }

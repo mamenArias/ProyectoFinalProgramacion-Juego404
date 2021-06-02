@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.Random;
+
 import enumeraciones.Enemigos;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
@@ -30,7 +32,7 @@ public class Usuario extends Adversario{
 			String respuestaNeutral, String respuestaAgresiva, short ataqueEspecial)
 			throws NombreVacioException, NombreConNumerosException {
 		super(nombre, vida, ataque, tipoEnemigo, respuestaAmistosa, respuestaNeutral, respuestaAgresiva);
-		this.setAtaque(ataque);
+		this.setAtaque(ataqueEspecial);
 	}
 	
 	/**
@@ -45,7 +47,7 @@ public class Usuario extends Adversario{
 	 */
 	public Usuario (String nombre, Short vida, Short ataque, Enemigos tipoEnemigo, short ataqueEspecial) throws NombreVacioException, NombreConNumerosException {
 		super(nombre, vida, ataque, tipoEnemigo);
-		this.setAtaque(ataque);
+		this.setAtaque(ataqueEspecial);
 	}
 
 	/**
@@ -64,5 +66,10 @@ public class Usuario extends Adversario{
 		//this.ataqueEspecial = ataqueEspecial;
 	}
 	
-	
+	public void ataqueEspecialUsuario(Protagonista p) {
+		p.bajarVida((short) new Random().nextInt(this.getAtaqueEspecial()));
+		if (p.getVida() <= 0) {
+			p.setVida((short) 0);
+		}
+	}
 }

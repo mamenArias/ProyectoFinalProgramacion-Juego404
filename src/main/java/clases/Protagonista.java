@@ -181,12 +181,12 @@ public class Protagonista extends Personaje {
 			}
 		} else if (p.getTipoPocion() == Pociones.DEATAQUE) {
 			super.setAtaque((short) (super.getAtaque() + habilidadPocion));
-		} else if (p.getTipoPocion() == Pociones.DEFENSIVA) {
+		} /*else if (p.getTipoPocion() == Pociones.DEFENSIVA) {
 			a.setAtaque((short) (a.getAtaque() - this.getReductorDaño()));
 			if (a.getAtaque() < 0) {
 				a.setAtaque((short) 0);
 			}
-		}
+		}*/
 	}
 
 }
