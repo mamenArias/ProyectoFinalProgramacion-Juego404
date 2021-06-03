@@ -65,7 +65,7 @@ public class PantallaDescripcionInicial extends JPanel {
 		labelAvanzar.setForeground(new Color(0, 0, 0));
 		labelAvanzar.setFont(new Font("MS Gothic", Font.BOLD, 28));
 		labelAvanzar.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelAvanzar.setBounds(97, 561, 663, 72);
+		labelAvanzar.setBounds(10, 561, 750, 72);
 		add(labelAvanzar);
 
 		// imagen de fondo

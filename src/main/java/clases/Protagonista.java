@@ -124,8 +124,7 @@ public class Protagonista extends Personaje {
 	 * @param a enemigo
 	 */
 	public void huir(Adversario a) {
-		Random r = new Random();
-		if (r.nextInt(100) > 90) {
+		if (new Random().nextInt(100) > 90) {
 			if (a.getTipoEnemigo() == Enemigos.PATITO) {
 				ventana.irAPantallaEscenario1();
 			}
@@ -146,7 +145,11 @@ public class Protagonista extends Personaje {
 		//a.bajarVida(this.getAtaque());
 		if (a.getVida() <= 0) {
 			a.setVida((short) 0);
-			JOptionPane.showMessageDialog(ventana, "Has vencido", "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
+			if (a.getTipoEnemigo() == Enemigos.USUARIO) {
+				JOptionPane.showMessageDialog(ventana, "Parece que se ha caído una llave...", "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(ventana, "Has vencido", "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 	}
 

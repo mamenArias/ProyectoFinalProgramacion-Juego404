@@ -147,6 +147,13 @@ public class Adversario extends Personaje {
 		}
 	}
 	
+	public void ataqueEspecial(Protagonista p) {
+		p.bajarVida((short) (2*this.getAtaque()));
+		if (p.getVida() <= 0) {
+			p.setVida((short) 0);
+		}
+	}
+	
 	public void atacarConPocion (Protagonista p) {
 		p.bajarVida((short) (this.getAtaque() - p.getReductorDaño()));
 		//p.bajarVida((short) (100 - p.getReductorDaño()));

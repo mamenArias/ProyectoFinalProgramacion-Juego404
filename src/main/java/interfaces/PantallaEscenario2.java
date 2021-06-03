@@ -200,7 +200,7 @@ public class PantallaEscenario2 extends JPanel {
 						e1.printStackTrace();
 					}
 				} else {
-					textoJuego.setText("\r\nYa te has tomado la poción, será mejor que busques otra.");
+					textoJuego.setText("\r\n Ya te has tomado la poción, será mejor que busques otra.");
 				}
 			}
 		});
@@ -214,7 +214,7 @@ public class PantallaEscenario2 extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (!ventana.enemigosDerrotados.contains(Enemigos.USUARIO)) {
 					try {
-						ventana.enemigo = new Adversario("Johny Melavo", (short) 500, (short) 100, Enemigos.USUARIO);
+						ventana.enemigo = new Adversario("Johny Melavo", (short) 350, (short) 100, Enemigos.USUARIO);
 					} catch (NombreVacioException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

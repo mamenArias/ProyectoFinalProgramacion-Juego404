@@ -34,11 +34,13 @@ public class Ventana extends JFrame {
 	private PantallaEscenario1 pantallaEscenario1; // primer escenario del juego
 	private PantallaEscenario2 pantallaEscenario2; // segundo escenario del juego
 	private PantallaBatalla pantallaBatalla; // pantalla de batalla
+	private PantallaOrdenador pantallaOrdenador; // pantalla de un ordenador para obtener la primera llave
 	private PantallaGameOver pantallaGameOver; // pantalla de Game Over cuando matan al personaje
 	private PantallaFinDemo pantallaFinDemo; // pantalla de final de juego temporal
 	protected Protagonista protagonista; // personaje principal del juego
 	protected Adversario enemigo; // enemigos del juego
 	protected Pocion pocion; // pociones del juego
+	protected boolean primeraLlave; // llave del primer escenario que se obtiene al acertar una clave
 	protected boolean segundaLlave; // llave del segundo escenario que se obtiene al vencer a un enemigo concreto
 	protected ArrayList<Enemigos> enemigosDerrotados; // Meto los enemigos que ya me he cargado
 	protected ArrayList<Pociones> pocionesTomadas; // meto las pociones que ya me haya tomado
@@ -261,5 +263,25 @@ public class Ventana extends JFrame {
 
 		this.setContentPane(pantallaFinDemo);
 		this.pantallaFinDemo.setVisible(true);
+	}
+	
+	/**
+	 * Función para hacer visible la pantalla ordenador tras vencer al enemigo Virus
+	 */
+	public void irAPantallaOrdenador() {
+		if (this.pantallaOrdenador == null) {
+			this.pantallaOrdenador = new PantallaOrdenador(this);
+		}
+		
+		if (this.pantallaBatalla != null) {
+			this.pantallaBatalla.setVisible(false);
+		}
+		
+		if (this.pantallaEscenario1 != null) {
+			this.pantallaEscenario1.setVisible(false);
+		}
+		
+		this.setContentPane(pantallaOrdenador);
+		this.pantallaOrdenador.setVisible(true);
 	}
 }

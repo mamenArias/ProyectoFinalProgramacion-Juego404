@@ -31,7 +31,6 @@ import excepciones.NombreVacioException;
 public class PantallaEscenario1 extends JPanel {
 
 	private Ventana ventana; // ventana
-	private boolean llave; // llave para abrir la puerta y pasar al siguiente escenario
 
 	/**
 	 * Constructor de la clase PantallaEscenario1 con todas las características de
@@ -41,8 +40,8 @@ public class PantallaEscenario1 extends JPanel {
 	 */
 	public PantallaEscenario1(Ventana v) {
 		this.ventana = v;
-		llave = false;
 		setLayout(new BorderLayout(0, 0));
+		ventana.primeraLlave = false;
 
 		JPanel panelCentral = new JPanel();
 
@@ -74,7 +73,8 @@ public class PantallaEscenario1 extends JPanel {
 		labelSilla.setSize(80, 150);
 		panelCentral.add(labelSilla);
 
-		// label que genera al enemigo patito cuando comprueba que no lo hemos derrotado aún
+		// label que genera al enemigo patito cuando comprueba que no lo hemos derrotado
+		// aún
 		JLabel labelEnemigo = new JLabel("");
 		labelEnemigo.addMouseListener(new MouseAdapter() {
 			@Override
@@ -103,18 +103,17 @@ public class PantallaEscenario1 extends JPanel {
 		labelEnemigo.setBounds(100, 350, 45, 45);
 		panelCentral.add(labelEnemigo);
 
-		// obtenemos la llave para abrir la puerta
-		JLabel labelLlave = new JLabel("");
-		labelLlave.addMouseListener(new MouseAdapter() {
+		// obtenemos una prueba para conseguir la clave para abrir la puerta
+		JLabel labelPrueba = new JLabel("");
+		labelPrueba.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textoJuego.setText("\r\n¡Has encontrado la llave! Prueba a salir de la habitación.");
-				llave = true;
+				textoJuego.setText("\r\n Se ha caído un papel. Pone 7..35, el segundo número no se ve bien.");
 			}
 		});
-		labelLlave.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		labelLlave.setBounds(490, 210, 45, 40);
-		panelCentral.add(labelLlave);
+		labelPrueba.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		labelPrueba.setBounds(490, 210, 45, 40);
+		panelCentral.add(labelPrueba);
 
 		// puerta para avanzar a la siguiente pantalla. Si llave=false, no puede
 		// abrirse, y si llave=true avanzamos
@@ -122,7 +121,7 @@ public class PantallaEscenario1 extends JPanel {
 		labelPuerta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (llave) {
+				if (ventana.primeraLlave) {
 					int opcionSalir = JOptionPane.showConfirmDialog(ventana,
 							"No podrás volver, ¿estás seguro que deseas continuar?", "Aviso",
 							JOptionPane.YES_NO_OPTION);
@@ -157,7 +156,14 @@ public class PantallaEscenario1 extends JPanel {
 					}
 					ventana.irAPantallaBatalla();
 				} else {
-					textoJuego.setText("\r\nYa has derrotado a WannaCry, tu ordenador está en perfecto estado.");
+					if (ventana.primeraLlave) {
+						textoJuego.setText(
+								"\r\nParece que no hay nada más que hacer por aquí, prueba a mirar la puerta.");
+					} else {
+						ventana.irAPantallaOrdenador();
+						// textoJuego.setText("\r\nYa has derrotado a WannaCry, tu ordenador está en
+						// perfecto estado.");
+					}
 				}
 			}
 		});
@@ -180,8 +186,9 @@ public class PantallaEscenario1 extends JPanel {
 						if (opcionPocion == JOptionPane.YES_OPTION) {
 							ventana.protagonista.setReductorDaño((byte) 60);
 							ventana.protagonista.usoDePociones(ventana.pocion, (short) 60, ventana.enemigo);
-							textoJuego.setText("\r\n Parece que tu defensa ha mejorado, ahora será más fácil derrotar a los enemigos.");
-							ventana.pocionesTomadas.add(ventana.pocion.getTipoPocion());	
+							textoJuego.setText(
+									"\r\n Parece que tu defensa ha mejorado, ahora será más fácil derrotar a los enemigos.");
+							ventana.pocionesTomadas.add(ventana.pocion.getTipoPocion());
 						}
 					} catch (NombreVacioException e1) {
 						// TODO Auto-generated catch block
@@ -198,17 +205,14 @@ public class PantallaEscenario1 extends JPanel {
 		labelPocion1.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		labelPocion1.setBounds(375, 409, 88, 68);
 		panelCentral.add(labelPocion1);
-		
+
 		// imagen de fondo
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setBackground(new Color(0, 0, 0));
-		labelFondo.setIcon(new ImageIcon(
-				"imagenes/habitacion2.jpg"));
+		labelFondo.setIcon(new ImageIcon("imagenes/habitacion2.jpg"));
 		labelFondo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelFondo.setBounds(0, 0, 800, 600);
 		panelCentral.add(labelFondo);
-		
-		
 
 	}
 }
