@@ -2,12 +2,14 @@ package clases;
 
 import java.util.Random;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import enumeraciones.Enemigos;
 import enumeraciones.Pociones;
 import excepciones.NombreConNumerosException;
 import excepciones.NombreVacioException;
+import hilos.HiloBatalla;
 import interfaces.Ventana;
 
 /**
@@ -123,14 +125,26 @@ public class Protagonista extends Personaje {
 	 * 
 	 * @param a enemigo
 	 */
-	public void huir(Adversario a) {
-		if (new Random().nextInt(100) > 90) {
-			if (a.getTipoEnemigo() == Enemigos.PATITO) {
-				ventana.irAPantallaEscenario1();
+	public void huir(Adversario a, Protagonista p, JLabel batalla, JLabel vida, Ventana v, HiloBatalla h) {
+		if (new Random().nextInt(100) > 70) {
+			if (a.getTipoEnemigo() == Enemigos.PATITO
+					|| a.getTipoEnemigo() == Enemigos.VIRUS) {
+				h.parar();
+				v.irAPantallaEscenario1();
+			} else if (a.getTipoEnemigo() == Enemigos.BUG
+					|| a.getTipoEnemigo() == Enemigos.USUARIO) {
+				h.parar();
+				v.irAPantallaEscenario2();
 			}
 		} else {
-			JOptionPane.showMessageDialog(ventana, "No puedes escapar", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-			// a.atacar();
+			batalla.setText("No has podido huir.");
+			a.atacar(p);
+			vida.setText("<html><body style='text-align:center'>" + p.getNombre()
+					+ ":<br>Vida: " + p.getVida() + "</body></html>");
+			if (p.getVida() == 0) {
+				h.parar();
+				v.irAPantallaGameOver();
+			}
 		}
 	}
 
@@ -184,12 +198,7 @@ public class Protagonista extends Personaje {
 			}
 		} else if (p.getTipoPocion() == Pociones.DEATAQUE) {
 			super.setAtaque((short) (super.getAtaque() + habilidadPocion));
-		} /*else if (p.getTipoPocion() == Pociones.DEFENSIVA) {
-			a.setAtaque((short) (a.getAtaque() - this.getReductorDaño()));
-			if (a.getAtaque() < 0) {
-				a.setAtaque((short) 0);
-			}
-		}*/
+		}
 	}
 
 }

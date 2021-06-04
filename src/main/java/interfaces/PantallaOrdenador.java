@@ -27,6 +27,11 @@ public class PantallaOrdenador extends JPanel{
 	private JTextField campoClave; // campo de texto donde introducimos la clave
 	//private String clavePuerta; // 
 	
+	/**
+	 * Constructor de la clase PantallaOrdenador con todas las características de la interfaz
+	 * 
+	 * @param v ventana
+	 */
 	public PantallaOrdenador (Ventana v) {
 		this.ventana = v;
 		setLayout(new BorderLayout(0, 0));
@@ -60,6 +65,7 @@ public class PantallaOrdenador extends JPanel{
 		panelCentral.add(panelBoton);
 		
 				JButton botonClave = new JButton("Comprobar");
+				botonClave.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				botonClave.setBackground(new Color(0, 153, 0));
 				botonClave.setFont(new Font("Maiandra GD", Font.BOLD, 18));
 				panelBoton.add(botonClave);
@@ -90,7 +96,7 @@ public class PantallaOrdenador extends JPanel{
 		panelCentral.add(botonExit);
 		
 		JLabel labelFondo = new JLabel("");
-		labelFondo.setIcon(new ImageIcon("F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\pantalla.png"));
+		labelFondo.setIcon(new ImageIcon("imagenes/pantalla.png"));
 		labelFondo.setBounds(3, -10, 803, 702);
 		labelFondo.setHorizontalAlignment(SwingConstants.CENTER);
 		panelCentral.add(labelFondo);

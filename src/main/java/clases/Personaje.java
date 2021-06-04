@@ -76,27 +76,4 @@ public class Personaje extends ElementoJuego {
 		this.vida = (short) (vida - ataque);
 	}
 
-	/**
-	 * Función para usar las pociones que te encuentras a lo largo del juego
-	 * 
-	 * @param p               poción hallada
-	 * @param habilidadPocion efecto de la poción sobre el personaje
-	 * @param a               enemigo sobre el que recae el efecto de la poción
-	 */
-	/*public void usoDePociones(Pocion p, short habilidadPocion, Adversario a) {
-		if (p.getTipoPocion() == Pociones.CURATIVA) {
-			this.vida = (short) (vida + habilidadPocion);
-			if (this.vida > 500) {
-				this.vida = 500;
-			}
-		} else if (p.getTipoPocion() == Pociones.DEATAQUE) {
-			this.ataque = (short) (ataque + habilidadPocion);
-		} else if (p.getTipoPocion() == Pociones.DEFENSIVA) {
-			a.setAtaque((short) (ataque - habilidadPocion));
-			if (a.getAtaque() < 0) {
-				a.setAtaque((short) 0);
-			}
-		}
-	}*/
-
 }

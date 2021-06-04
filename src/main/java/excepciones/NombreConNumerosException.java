@@ -7,6 +7,10 @@ package excepciones;
  *
  */
 public class NombreConNumerosException extends Exception {
+	/**
+	 * Constructor de la excepción que lanza un mensaje
+	 * @param msg mensaje de la excepción
+	 */
 	public NombreConNumerosException(String msg) {
 		super(msg);
 	}

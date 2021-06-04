@@ -234,7 +234,7 @@ public class PantallaEscenario2 extends JPanel {
 		panelCentral.add(labelJefe);
 		
 		JLabel labelFondo = new JLabel("");
-		labelFondo.setIcon(new ImageIcon("F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\salon.jpg"));
+		labelFondo.setIcon(new ImageIcon("imagenes/salon.jpg"));
 		labelFondo.setBounds(0, -52, 800, 702);
 		panelCentral.add(labelFondo);
 		

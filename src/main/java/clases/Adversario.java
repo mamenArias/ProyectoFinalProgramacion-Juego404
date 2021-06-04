@@ -147,6 +147,10 @@ public class Adversario extends Personaje {
 		}
 	}
 	
+	/**
+	 * Función que ejecuta un ataque especial aleatoriamente que es el doble del normal
+	 * @param p protagonista
+	 */
 	public void ataqueEspecial(Protagonista p) {
 		p.bajarVida((short) (2*this.getAtaque()));
 		if (p.getVida() <= 0) {
@@ -154,18 +158,14 @@ public class Adversario extends Personaje {
 		}
 	}
 	
+	/**
+	 * Función a usar cuando el protagonista se tome una poción y baja el ataque del enemigo
+	 * @param p protagonista
+	 */
 	public void atacarConPocion (Protagonista p) {
 		p.bajarVida((short) (this.getAtaque() - p.getReductorDaño()));
-		//p.bajarVida((short) (100 - p.getReductorDaño()));
 		if (p.getVida() <= 0) {
 			p.setVida((short) 0);
 		}
 	}
-	
-	/*public void usoDePocionProta (Pocion p, short habilidadPocion) {
-		this.setAtaque((short) (this.getAtaque() - habilidadPocion));
-		if (this.getAtaque() < 0) {
-			this.setAtaque((short)0);
-		}
-	}*/
 }

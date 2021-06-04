@@ -62,7 +62,7 @@ public class PantallaGameOver extends JPanel {
 		// imagen de fondo
 		JLabel labelGameOver = new JLabel("");
 		labelGameOver.setIcon(new ImageIcon(
-				"F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\gameover1.jpg"));
+				"imagenes/gameover1.jpg"));
 		labelGameOver.setHorizontalAlignment(SwingConstants.CENTER);
 		labelGameOver.setBounds(0, -96, 801, 788);
 		add(labelGameOver);

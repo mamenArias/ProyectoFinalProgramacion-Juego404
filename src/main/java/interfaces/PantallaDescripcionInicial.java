@@ -71,7 +71,7 @@ public class PantallaDescripcionInicial extends JPanel {
 		// imagen de fondo
 		JLabel labelFondo = new JLabel("");
 		labelFondo.setIcon(new ImageIcon(
-				"F:\\Mamen\\1DAM\\GitHub\\Programaci\u00F3n\\ProyectoFinalProgramacion-Juego404\\imagenes\\fondoDescripcion.jpg"));
+				"imagenes/fondoDescripcion.jpg"));
 		labelFondo.setBounds(0, 0, 808, 703);
 		add(labelFondo);
 
