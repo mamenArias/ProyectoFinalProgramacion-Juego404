@@ -73,7 +73,7 @@ public class PantallaOrdenador extends JPanel{
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						//clavePuerta = campoClave.getText();
-						if (campoClave.getText().equals("7535")) {
+						if (campoClave.getText().equals("7835")) {
 							ventana.primeraLlave = true;
 							JOptionPane.showMessageDialog(ventana, "¡Clave introducida con éxito!", "Clave correcta", JOptionPane.INFORMATION_MESSAGE);
 							ventana.irAPantallaEscenario1();
